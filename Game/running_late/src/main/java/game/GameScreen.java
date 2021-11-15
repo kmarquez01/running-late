@@ -4,6 +4,8 @@ import game.characters.Player;
 import game.tiles.TileManager;
 import game.utils.CollisionHandler;
 import game.utils.KeyHandler;
+import game.utils.MouseInput;
+import game.states.*;
 
 import game.objects.Reward;
 import game.utils.RewardSetter;
@@ -18,6 +20,9 @@ import game.utils.PunishmentSetter;
 
 
 import javax.swing.*;
+import javax.swing.event.MouseInputListener;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.TitlePaneLayout;
+
 import java.awt.*;
 
 public class GameScreen extends JPanel implements Runnable {
@@ -35,12 +40,18 @@ public class GameScreen extends JPanel implements Runnable {
     // A KeyHandler to handle all input
     KeyHandler input = new KeyHandler();
 
+    MouseInput mouseInput = new MouseInput();
+
+  /*  MouseInput mouseInput = new MouseInput(); */
+
     // A player for the user to control
     Player player = new Player(this, input);
 
     public CollisionHandler collisionHandler = new CollisionHandler(this);
 
     public TileManager tileManager = new TileManager(this);
+
+    public TitleScreenPanel titleScreenPanel = new TitleScreenPanel(this);
 
     // Creates the game window
     public GameScreen(){
@@ -51,6 +62,7 @@ public class GameScreen extends JPanel implements Runnable {
         setBackground(Color.black);
         setDoubleBuffered(true);
         addKeyListener(input);
+        addMouseListener(mouseInput);
 
         gameFrame.setResizable(false);
         gameFrame.pack();
@@ -127,25 +139,45 @@ public class GameScreen extends JPanel implements Runnable {
     // It's responsible for displaying everything to the screen
     // So every graphic must go here
     public void paintComponent(Graphics graphic) {
+
         super.paintComponent(graphic);
         Graphics2D G2D = (Graphics2D)graphic;
-        tileManager.draw(G2D);
 
-        //draw stationary rewards before drawing player
-        for (int i=0; i < rewards.length; i++){
-            if (rewards[i] != null){
-                rewards[i].draw(G2D, this);
-            }
-        }
-        //draw stationary punishments before drawing player
-        for (int i=0; i < punishments.length; i++){
-            if (punishments[i] != null){
-                punishments[i].draw(G2D, this);
-            }
-        }
+        switch (GameState.gameState){
+            case MENU:
+                titleScreenPanel.draw(G2D);
+                G2D.dispose();
+                break;
 
-        player.draw(G2D);
-        G2D.dispose();
+            case PLAYING:
+                tileManager.draw(G2D);
+
+                //draw stationary rewards before drawing player
+                for (int i=0; i < rewards.length; i++){
+                    if (rewards[i] != null){
+                        rewards[i].draw(G2D, this);
+                    }
+                }
+                //draw stationary punishments before drawing player
+                for (int i=0; i < punishments.length; i++){
+                    if (punishments[i] != null){
+                        punishments[i].draw(G2D, this);
+                    }
+                }
+
+                player.draw(G2D);
+                G2D.dispose();
+                break;
+            
+            case EXIT:
+                System.exit(0);
+                break;
+
+            case SETTINGS:
+                
+
+        }
+        
     }
 
 

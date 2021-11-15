@@ -1,4 +1,11 @@
 package game.states;
 
-public class GameState {
+public enum GameState {
+
+    PLAYING,
+    MENU,
+    SETTINGS,
+    EXIT;
+
+    public static GameState gameState = MENU;
 }
