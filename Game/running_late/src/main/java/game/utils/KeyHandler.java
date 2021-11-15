@@ -3,11 +3,15 @@ package game.utils;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import game.states.GameState;
+
 public class KeyHandler implements KeyListener {
 
     public boolean up, down, left, right;
 
     private void keyChecker(boolean check, int key){
+    
+    if(GameState.gameState == GameState.PLAYING){
         if (key == KeyEvent.VK_UP) {
             up = check;
         }
@@ -20,6 +24,7 @@ public class KeyHandler implements KeyListener {
         if (key == KeyEvent.VK_RIGHT) {
             right = check;
         }
+    }
     }
 
     @Override
