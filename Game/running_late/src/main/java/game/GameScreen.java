@@ -29,8 +29,8 @@ public class GameScreen extends JPanel implements Runnable {
     public Score score = new Score();
 
     // A KeyHandler to handle all input
-    KeyHandler input = new KeyHandler();
-    MouseInput mouseInput = new MouseInput();
+    public KeyHandler input = new KeyHandler();
+    public MouseInput mouseInput = new MouseInput();
 
     // A Collision Handler to handle all collisions
     public CollisionHandler collisionHandler = new CollisionHandler(this);

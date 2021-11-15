@@ -11,11 +11,12 @@ public class EnemySetter {
 
     public EnemySetter(GameScreen gs, Player player){
         this.gs = gs;
+        this.player = player;
     }
 
     public void setEnemy(){
 
-        gs.enemy[0] = new Enemy(gs, 500, 500, player);
+        gs.enemy[0] = new Enemy(gs, gs.input, 500, 500, player);
 //        gs.obj[0].worldX = 5 * gs.tileSize;
 //        gs.obj[0].worldY = 5 * gs.tileSize;
 //

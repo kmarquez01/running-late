@@ -1,6 +1,7 @@
 package game.characters;
 
 import game.GameScreen;
+import game.utils.KeyHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,13 +12,15 @@ import java.io.IOException;
 public class Enemy extends Character {
 
     private GameScreen screen;
+    private KeyHandler input;
     private Player player;
 
-    public Enemy(GameScreen screen, int x, int y, Player player) {
+    public Enemy(GameScreen screen, KeyHandler input, int x, int y, Player player) {
 
         position = new Point(x,y);
 
         this.screen = screen;
+        this.input = input;
         this.player = player;
 
         solidArea = new Rectangle();
@@ -57,10 +60,56 @@ public class Enemy extends Character {
     }
 
     public void move() {
-        // player is now a field inside enemy
-        // this will implement a pathfinding algortihm with player.position as its target
-        // it will also take into consideration walls and punishments
 
+
+        if (player.position.y != position.y || player.position.x != position.x) {
+
+            if (player.position.y < position.y) {
+                direction = "up";
+            } else if (player.position.y > position.y) {
+                direction = "down";
+            }else if (/*player.position.y == player.position.y && */ player.position.x > position.x) {
+                direction = "right";
+            } else if (/*player.position.y == player.position.y && */ player.position.x < position.x) {
+                direction = "left";
+            }
+
+            // check tile for collision
+            collisionOn = false;
+            screen.collisionHandler.checkTile(this);
+
+            // if collision:
+            if (collisionOn == false) {
+                if (direction == "up") {
+                    position.y -= speed;
+                } else if (direction == "down") {
+                    position.y += speed;
+                } else if (direction == "left") {
+                    position.x -= speed;
+                } else if (direction == "right") {
+                    position.x += speed;
+                }
+            }
+
+            // for drawing the character moving:
+            spriteCounter++;
+            if (spriteCounter > 4) {
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
+                    spriteNum = 3;
+                } else if (spriteNum == 3) {
+                    spriteNum = 4;
+                } else if (spriteNum == 4) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
+
+        }
+        else {
+            spriteNum = 1;
+        }
     }
 
     public void draw(Graphics2D G2D) {
