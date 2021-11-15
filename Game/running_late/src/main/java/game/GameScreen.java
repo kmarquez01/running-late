@@ -57,6 +57,10 @@ public class GameScreen extends JPanel implements Runnable {
 
     public TitleScreenPanel titleScreenPanel = new TitleScreenPanel(this);
 
+    //Paused Menu
+
+    public GamePauseMenu gamePauseMenu = new GamePauseMenu(this);
+
 
     // Creates the game window
     public GameScreen(){
@@ -152,6 +156,8 @@ public class GameScreen extends JPanel implements Runnable {
             case PLAYING:
                 // Draws the tiles
                 tileManager.draw(G2D);
+
+                
         
                 // Draws the objects
                 for(int i = 0; i < obj.length; i++){
@@ -180,7 +186,8 @@ public class GameScreen extends JPanel implements Runnable {
                 System.exit(0);
                 break;
 
-            case SETTINGS:
+            case PAUSED:
+                gamePauseMenu.draw(G2D);
                 
 
         }

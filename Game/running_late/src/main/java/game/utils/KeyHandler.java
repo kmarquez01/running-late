@@ -7,7 +7,7 @@ import game.states.GameState;
 
 public class KeyHandler implements KeyListener {
 
-    public boolean up, down, left, right;
+    public boolean up, down, left, right, esc;
 
     private void keyChecker(boolean check, int key){
     
@@ -24,6 +24,11 @@ public class KeyHandler implements KeyListener {
         if (key == KeyEvent.VK_RIGHT) {
             right = check;
         }
+        if(key == KeyEvent.VK_ESCAPE){
+            esc = check;
+            GameState.gameState = GameState.PAUSED;
+        }
+       
     }
     }
 
