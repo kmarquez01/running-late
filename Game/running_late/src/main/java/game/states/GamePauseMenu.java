@@ -39,8 +39,8 @@ public class GamePauseMenu{
         Font fnt = new Font("helvetica", Font.BOLD, 30);
         g.setFont(fnt);
         g.setColor(myGreen);
-        g.drawString("RESUME", 600, 400); 
-        g.drawString("RESTART", 665, 525); 
+        g.drawString("RESUME", 640, 400); 
+        g.drawString("RESTART", 640, 525); 
 
 
     }
