@@ -69,6 +69,12 @@ public class Player extends Character {
     public void move() {
 
         if (enemyCollision) {
+            try {
+                Thread.sleep(1000);
+            }
+            catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             GameState.gameState = GameState.GAMEOVER;
         }
 
@@ -143,7 +149,7 @@ public class Player extends Character {
             else if (screen.obj[i].hurtful) {
                 score.currentScore--;
                 hurt = true;
-                // wait 2/3 second
+                // wait 2/3 a second
                 hurt = false;
 
             }

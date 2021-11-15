@@ -25,8 +25,6 @@ public class GameOverMenu {
 
     int spacing = 90;
 
-
-
     public void draw(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
