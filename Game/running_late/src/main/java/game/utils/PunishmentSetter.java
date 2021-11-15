@@ -16,6 +16,8 @@ public class PunishmentSetter {
 
         //TODO add more spots later
 
+        /*
+
         game.punishments[0] = new Punishment();
         game.punishments[0].x = 15 * game.tileSize;
         game.punishments[0].y = 15 * game.tileSize;
@@ -23,5 +25,6 @@ public class PunishmentSetter {
         game.punishments[1] = new Punishment();
         game.punishments[1].x = 7 * game.tileSize;
         game.punishments[1].y = 7 * game.tileSize;
+        */
     }
 }

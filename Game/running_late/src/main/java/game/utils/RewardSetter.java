@@ -16,6 +16,8 @@ public class RewardSetter {
 
         //TODO add more spots later
 
+        /*
+
         game.rewards[0] = new Reward();
         game.rewards[0].x = 10 * game.tileSize;
         game.rewards[0].y = 10 * game.tileSize;
@@ -23,6 +25,7 @@ public class RewardSetter {
         game.rewards[1] = new Reward();
         game.rewards[1].x = 5 * game.tileSize;
         game.rewards[1].y = 5 * game.tileSize;
+        */
     }
 
 
