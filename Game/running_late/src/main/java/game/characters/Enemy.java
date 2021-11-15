@@ -1,50 +1,114 @@
 package game.characters;
 
 import game.GameScreen;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-public class Enemy {
-    public BufferedImage image;
-    public boolean collision = false;
-    public int points;
+public class Enemy extends Character {
 
-//    public String name;
-    public int x;
-    public int y;
+    private GameScreen screen;
+    private Player player;
 
-    //constructor
-    public Enemy(){
-//        name = "movingEnemy";
-        points = (-10); //change #
+    public Enemy(GameScreen screen, int x, int y, Player player) {
+
+        position = new Point(x,y);
+
+        this.screen = screen;
+        this.player = player;
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
+        setDefaultValues();
+        setEnemyImage();
+        direction = "down";
+    }
+
+    public void setDefaultValues() {
+        worldX = screen.tileSize * 23;
+        worldY = screen.tileSize * 21;
+    }
+
+    public void setEnemyImage(){
         try {
-            //update image later
-            image = ImageIO.read((new FileInputStream("resources/rewards/redstar.png")));
+            up1 = ImageIO.read( (new FileInputStream("resources/enemy/idleup.png") ) );
+            up2 = ImageIO.read( (new FileInputStream ("resources/enemy/up1.png")));
+            up3 = ImageIO.read( (new FileInputStream ("resources/enemy/up2.png")));
+            down1 = ImageIO.read( (new FileInputStream ("resources/enemy/idledown.png")));
+            down2 = ImageIO.read( (new FileInputStream ("resources/enemy/down1.png")));
+            down3 = ImageIO.read( (new FileInputStream ("resources/enemy/down2.png")));
+            left1 = ImageIO.read( (new FileInputStream ("resources/enemy/idleleft.png")));
+            left2 = ImageIO.read( (new FileInputStream ("resources/enemy/left1.png")));
+            right1 = ImageIO.read( (new FileInputStream ("resources/enemy/idleright.png")));
+            right2 = ImageIO.read( (new FileInputStream ("resources/enemy/right1.png")));
         }
         catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    //draw the image on screen
-    public void draw(Graphics2D G2D, GameScreen screen){
-        G2D.drawImage(image, x, y, screen.tileSize, screen.tileSize, null);
+    public void move() {
+        // player is now a field inside enemy
+        // this will implement a pathfinding algortihm with player.position as its target
+        // it will also take into consideration walls and punishments
+
     }
 
-    //only appears at random times - do in EnemySetter
+    public void draw(Graphics2D G2D) {
+        BufferedImage sprite = null;
 
+        if (direction == "up") {
+            if(spriteNum == 1) {
+                sprite = up1;
+            } else if (spriteNum == 2) {
+                sprite = up2;
+            } else if (spriteNum == 3) {
+                sprite = up1;
+            } else if (spriteNum == 4) {
+                sprite = up3;
+            }
+        } else if (direction == "down"){
+            if(spriteNum == 1) {
+                sprite = down1;
+            } else if(spriteNum == 2) {
+                sprite = down2;
+            } else if(spriteNum == 3) {
+                sprite = down1;
+            } else if(spriteNum == 4) {
+                sprite = down3;
+            }
+        } else if (direction == "left"){
+            if (spriteNum == 1) {
+                sprite = left1;
+            } else if (spriteNum == 2) {
+                sprite = left2;
+            } else if (spriteNum == 3) {
+                sprite = left1;
+            } else if (spriteNum == 4) {
+                sprite = left2;
+            }
+        } else if (direction == "right") {
+            if(spriteNum == 1) {
+                sprite = right1;
+            } else if (spriteNum == 2) {
+                sprite = right2;
+            } else if (spriteNum == 3) {
+                sprite = right1;
+            } else if (spriteNum == 4) {
+                sprite = right2;
+            }
+        }
 
-
-    //detect collision w/ player & **kill player**
-    //death fxn in gameScreen?
-
-
-
-
-    //if no collision, disappears after certain amt of time & replaced with tile:
-
-
+        G2D.drawImage(sprite, position.x, position.y, screen.tileSize, screen.tileSize, null);
+    }
 
 }

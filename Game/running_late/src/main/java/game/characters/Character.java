@@ -18,16 +18,18 @@ public class Character {
     public String direction;
 
     // the character's position
-    public Point playerPosition = new Point(100,100);
+    public Point position;
 
     // the character's speed
-    public int speed = 3;
+    public int speed = 4;
 
     int spriteCounter = 0;
     int spriteNum = 1;
 
     public Rectangle solidArea;
+    public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+
 
 
 /*    public boolean checkWall(int currX, int currY) {

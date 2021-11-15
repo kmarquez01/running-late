@@ -40,6 +40,10 @@ public class TileManager {
 
             tile[3] = new Tiles();
             tile[3].image = ImageIO.read( (new FileInputStream("resources/tiles/tree.png") ) );
+
+            tile[4] = new Tiles();
+            tile[4].image = ImageIO.read( (new FileInputStream("resources/tiles/sand.png") ) );
+            tile[4].coin = true;
         }
         catch (IOException e){
             e.printStackTrace();
