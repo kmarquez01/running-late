@@ -17,11 +17,13 @@ public class Player extends Character {
     private KeyHandler input;
     private Score score;
     private boolean hurt = false;
+    public boolean enemyCollision = false;
 
 
     public Player (GameScreen screen, KeyHandler input, Score score, int x, int y) {
 
         position = new Point(x,y);
+        speed = 4;
 
         this.screen = screen;
         this.input = input;
@@ -83,6 +85,9 @@ public class Player extends Character {
                 collisionOn = false;
                 screen.collisionHandler.checkTile(this);
 
+                // check for enemy collision
+                screen.collisionHandler.checkTile(this);
+
                 // check object collision
                 // basically objectIndex is by default set to 999
                 // if you are touching an object, then objectIndex becomes its index
@@ -90,8 +95,8 @@ public class Player extends Character {
                 int objectIndex = screen.collisionHandler.checkObject(this, true);
                 pickUpObject(objectIndex);
 
-                // if collision:
-                if (collisionOn == false) {
+                // if there is no collision, move:
+                if (!collisionOn) {
                     if (direction == "up") {
                         position.y -= speed;
                     } else if (direction == "down") {

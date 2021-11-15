@@ -175,6 +175,12 @@ public class CollisionHandler {
     }
 
     // add collision with enemy
+    public void checkEnemy(Player entity) {
+
+        // if enemy collision, set player.enemyCollision = true;
+        // if enemy collision == true, move to game over state
+
+    }
 
 
 

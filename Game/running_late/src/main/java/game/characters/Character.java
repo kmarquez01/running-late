@@ -21,7 +21,7 @@ public class Character {
     public Point position;
 
     // the character's speed
-    public int speed = 4;
+    public int speed;
 
     int spriteCounter = 0;
     int spriteNum = 1;

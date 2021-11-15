@@ -18,6 +18,7 @@ public class Enemy extends Character {
     public Enemy(GameScreen screen, KeyHandler input, int x, int y, Player player) {
 
         position = new Point(x,y);
+        speed = 2;
 
         this.screen = screen;
         this.input = input;
@@ -61,16 +62,15 @@ public class Enemy extends Character {
 
     public void move() {
 
-
         if (player.position.y != position.y || player.position.x != position.x) {
 
             if (player.position.y < position.y) {
                 direction = "up";
             } else if (player.position.y > position.y) {
                 direction = "down";
-            }else if (/*player.position.y == player.position.y && */ player.position.x > position.x) {
+            }else if (player.position.x > position.x) {
                 direction = "right";
-            } else if (/*player.position.y == player.position.y && */ player.position.x < position.x) {
+            } else if (player.position.x < position.x) {
                 direction = "left";
             }
 
@@ -79,7 +79,7 @@ public class Enemy extends Character {
             screen.collisionHandler.checkTile(this);
 
             // if collision:
-            if (collisionOn == false) {
+            if (!collisionOn) {
                 if (direction == "up") {
                     position.y -= speed;
                 } else if (direction == "down") {
