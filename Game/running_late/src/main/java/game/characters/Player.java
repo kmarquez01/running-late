@@ -1,6 +1,7 @@
 package game.characters;
 
 import game.GameScreen;
+import game.states.GameState;
 import game.stats.Score;
 import game.utils.KeyHandler;
 
@@ -67,6 +68,10 @@ public class Player extends Character {
 
     public void move() {
 
+        if (enemyCollision) {
+            GameState.gameState = GameState.GAMEOVER;
+        }
+
         if (!hurt) {
             // If the key is pressed
             if (input.up || input.down || input.left || input.right) {
@@ -86,7 +91,7 @@ public class Player extends Character {
                 screen.collisionHandler.checkTile(this);
 
                 // check for enemy collision
-                screen.collisionHandler.checkTile(this);
+                screen.collisionHandler.checkEnemy(this, true);
 
                 // check object collision
                 // basically objectIndex is by default set to 999

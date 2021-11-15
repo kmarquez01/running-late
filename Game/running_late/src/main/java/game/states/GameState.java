@@ -6,7 +6,8 @@ public enum GameState {
     MENU,
     SETTINGS,
     EXIT,
-    PAUSED;
+    PAUSED,
+    GAMEOVER;
 
     public static GameState gameState = MENU;
 }

@@ -54,12 +54,12 @@ public class GameScreen extends JPanel implements Runnable {
     public EnemySetter eSetter = new EnemySetter(this, player);
 
     // Title screen or opening landing page
-
     public TitleScreenPanel titleScreenPanel = new TitleScreenPanel(this);
 
     //Paused Menu
-
     public GamePauseMenu gamePauseMenu = new GamePauseMenu(this);
+
+    public GameOverMenu gameOverMenu = new GameOverMenu(this);
 
 
     // Creates the game window
@@ -188,8 +188,9 @@ public class GameScreen extends JPanel implements Runnable {
 
             case PAUSED:
                 gamePauseMenu.draw(G2D);
-                
 
+            case GAMEOVER:
+                gameOverMenu.draw(G2D);
         }
 
     }

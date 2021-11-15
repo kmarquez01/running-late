@@ -175,10 +175,79 @@ public class CollisionHandler {
     }
 
     // add collision with enemy
-    public void checkEnemy(Player entity) {
+    public int checkEnemy(Player entity, boolean player) {
 
         // if enemy collision, set player.enemyCollision = true;
         // if enemy collision == true, move to game over state
+
+        int index = 999;
+
+        for( int i = 0; i < screen.enemy.length; i++){
+            if( screen.enemy[i] != null){
+
+                //Get entity's solid area position
+                entity.solidArea.x = entity.position.x + entity.solidArea.x;
+                entity.solidArea.y = entity.position.y + entity.solidArea.y;
+
+                //Get the enemy's solid area position
+                screen.enemy[i].solidArea.x = screen.enemy[i].position.x + screen.enemy[i].solidArea.x;
+                screen.enemy[i].solidArea.y = screen.enemy[i].position.y + screen.enemy[i].solidArea.y;
+
+                switch(entity.direction){
+                    case "up":
+                        entity.solidArea.y -= entity.speed;
+                        if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
+                            //if(screen.enemy[i].collision){
+                                entity.enemyCollision = true;
+                            //}
+                            if(player){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "down":
+                        entity.solidArea.y += entity.speed;
+                        if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
+                            //if(screen.enemy[i].collision){
+                                entity.enemyCollision = true;
+                            //}
+                            if(player){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "left":
+                        entity.solidArea.x -= entity.speed;
+                        if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
+                            //if(screen.enemy[i].collision){
+                                entity.enemyCollision = true;
+                            //}
+                            if(player){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "right":
+                        entity.solidArea.x += entity.speed;
+                        if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
+                            //if(screen.enemy[i].collision){
+                                entity.enemyCollision = true;
+                           // }
+                            if (player){
+                                index = i;
+                            }
+                        }
+                        break;
+
+                }
+                entity.solidArea.x = entity.solidAreaDefaultX;
+                entity.solidArea.y = entity.solidAreaDefaultY;
+                screen.enemy[i].solidArea.x = screen.enemy[i].solidAreaDefaultX;
+                screen.enemy[i].solidArea.y = screen.enemy[i].solidAreaDefaultY;
+            }
+        }
+
+        return index;
 
     }
 

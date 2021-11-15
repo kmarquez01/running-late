@@ -43,7 +43,7 @@ public class TileManager {
 
             tile[4] = new Tiles();
             tile[4].image = ImageIO.read( (new FileInputStream("resources/tiles/sand.png") ) );
-            tile[4].coin = true;
+            tile[4].reward = true;
         }
         catch (IOException e){
             e.printStackTrace();

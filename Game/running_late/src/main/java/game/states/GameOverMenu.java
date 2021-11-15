@@ -1,21 +1,18 @@
 package game.states;
 
-import java.awt.*;
-import java.io.*;
-
 import game.GameScreen;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-
-
-
-public class GamePauseMenu{
+public class GameOverMenu {
 
     Color myGreen = new Color(189, 221, 114);
     Image img = null;
 
-    public GamePauseMenu(GameScreen board){
+    public GameOverMenu(GameScreen board){
         getImage();
         return;
     }
@@ -28,7 +25,7 @@ public class GamePauseMenu{
 
     int spacing = 90;
 
-   
+
 
     public void draw(Graphics g){
 
@@ -39,8 +36,9 @@ public class GamePauseMenu{
         Font fnt = new Font("helvetica", Font.BOLD, 30);
         g.setFont(fnt);
         g.setColor(myGreen);
-        g.drawString(" RESUME", 640, 400);
-        g.drawString("RESTART", 640, 525); 
+        g.drawString("^ (it says paused game cuz I didnt have time to make a new gameover label lol ", 150, 500);
+//        g.drawString("NEW GAME", 640, 400);
+//        g.drawString("MAIN MENU", 640, 525);
 
 
     }
@@ -54,6 +52,4 @@ public class GamePauseMenu{
             e.printStackTrace();
         }
     }
-
-
 }
