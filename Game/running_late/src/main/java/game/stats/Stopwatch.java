@@ -32,7 +32,12 @@ public class Stopwatch {
         Font font = new Font("Verdana", Font.BOLD, 30);
         graphic.setFont(font);
         graphic.setColor(Color.white);
-        graphic.drawString("Time: " + timeLabel, 10, 70);
+        if (timeLabel != null) {
+            graphic.drawString("Time: " + timeLabel, 10, 70);
+        } else {
+            graphic.drawString("Time: 00:00", 10, 70);
+        }
+
     }
 
     public void stopTimer(){
