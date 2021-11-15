@@ -1,8 +1,21 @@
 package game;
+import game.characters.Character;
 import game.characters.Player;
 import game.tiles.TileManager;
 import game.utils.CollisionHandler;
 import game.utils.KeyHandler;
+
+import game.objects.Reward;
+import game.utils.RewardSetter;
+import game.characters.Punishment;
+import game.utils.PunishmentSetter;
+
+//
+//import game.objects.BonusReward;
+//import game.utils.BonusRewardSetter;
+//import game.characters.Enemy;
+//import game.utils.EnemySetter;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +26,8 @@ public class GameScreen extends JPanel implements Runnable {
     public int tileSize = 48;
     public int gameCol = 30;
     public int gameRow = 20;
+
+    private int score = 0;
 
     // The thread that will run the game:
     private Thread gameThread;
@@ -44,13 +59,33 @@ public class GameScreen extends JPanel implements Runnable {
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);
         setFocusable(true);
-
     }
+
+    //add rewards
+    public Reward rewards[] = new Reward[10]; //can display up to 10 rewards at the same time
+    public RewardSetter rSetter = new RewardSetter(this);
+
+    public void setUpRewards(){
+        rSetter.setRewards();
+    }
+
+    //add punishments
+    public Punishment punishments[] = new Punishment[10];
+    public PunishmentSetter pSetter = new PunishmentSetter(this);
+
+    public void setUpPunishments(){
+        pSetter.setPunishments();
+    }
+
 
     // Starts the game
     public void startGameThread () {
         gameThread = new Thread(this);
         gameThread.start();
+
+        score = 0;
+        Object graphic = new Object();
+        Graphics2D G2D = (Graphics2D) graphic;
     }
 
     // Runs the game
@@ -95,9 +130,32 @@ public class GameScreen extends JPanel implements Runnable {
         super.paintComponent(graphic);
         Graphics2D G2D = (Graphics2D)graphic;
         tileManager.draw(G2D);
+
+        //draw stationary rewards before drawing player
+        for (int i=0; i < rewards.length; i++){
+            if (rewards[i] != null){
+                rewards[i].draw(G2D, this);
+            }
+        }
+        //draw stationary punishments before drawing player
+        for (int i=0; i < punishments.length; i++){
+            if (punishments[i] != null){
+                punishments[i].draw(G2D, this);
+            }
+        }
+
         player.draw(G2D);
         G2D.dispose();
     }
+
+
+
+//     private void death(){
+//        if (score<=0){
+//            gameThread.stop();
+//        }
+//        //also need to die if player collides with moving enemy
+//    }
 
 
 }

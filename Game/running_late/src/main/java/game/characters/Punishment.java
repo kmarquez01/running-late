@@ -6,45 +6,39 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class Enemy {
+public class Punishment {
     public BufferedImage image;
     public boolean collision = false;
     public int points;
 
-//    public String name;
     public int x;
     public int y;
 
+
     //constructor
-    public Enemy(){
-//        name = "movingEnemy";
-        points = (-10); //change #
+    public Punishment(){
+        points = (-5);
         try {
-            //update image later
-            image = ImageIO.read((new FileInputStream("resources/rewards/redstar.png")));
+            //change image name
+            image = ImageIO.read((new FileInputStream("resources/punishments/bluestar.png")));
         }
         catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    //draw the image on screen
+
+    //draw punishments on screen
     public void draw(Graphics2D G2D, GameScreen screen){
         G2D.drawImage(image, x, y, screen.tileSize, screen.tileSize, null);
     }
 
-    //only appears at random times - do in EnemySetter
+    //detect collision with player: (also add points to player's score)
+    //TODO
 
 
 
-    //detect collision w/ player & **kill player**
-    //death fxn in gameScreen?
-
-
-
-
-    //if no collision, disappears after certain amt of time & replaced with tile:
-
-
+    //disappears & replaced with tile:
+    //TODO
 
 }

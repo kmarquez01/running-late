@@ -1,12 +1,14 @@
-package game.characters;
+package game.objects;
 
 import game.GameScreen;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 
-public class Enemy {
+public class BonusReward {
     public BufferedImage image;
     public boolean collision = false;
     public int points;
@@ -16,9 +18,9 @@ public class Enemy {
     public int y;
 
     //constructor
-    public Enemy(){
-//        name = "movingEnemy";
-        points = (-10); //change #
+    public BonusReward(){
+//        name = "bonusReward";
+        points = 10; //change #
         try {
             //update image later
             image = ImageIO.read((new FileInputStream("resources/rewards/redstar.png")));
@@ -33,17 +35,22 @@ public class Enemy {
         G2D.drawImage(image, x, y, screen.tileSize, screen.tileSize, null);
     }
 
-    //only appears at random times - do in EnemySetter
+    //only draw at random times - do in bonusRewardSetter
 
 
 
-    //detect collision w/ player & **kill player**
-    //death fxn in gameScreen?
+    //detect collision w/ player (& add points to score)
 
+
+
+    //disappears & replaced with tile:
 
 
 
     //if no collision, disappears after certain amt of time & replaced with tile:
+
+
+
 
 
 

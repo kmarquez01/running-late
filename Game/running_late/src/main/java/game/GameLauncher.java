@@ -20,7 +20,13 @@ public class GameLauncher {
 
     public static void main(String[] args) {
         GameScreen game = new GameScreen();
+
+        //set up stationary rewards & punishments before starting game thread
+        game.setUpRewards();
+        game.setUpPunishments();
+
         game.startGameThread();
+
 //        GameLauncher game = new GameLauncher();
     }
 }
