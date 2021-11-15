@@ -29,11 +29,11 @@ public class TileManager {
     public void getTitleImage() {
         try{
             tile[0] = new Tiles();
-            tile[0].image = ImageIO.read( (new FileInputStream("resources/tiles/wall.png") ) );
+            tile[0].image = ImageIO.read( (new FileInputStream("resources/tiles/WallTile.png") ) );
             tile[0].collision = true;
 
             tile[1] = new Tiles();
-            tile[1].image = ImageIO.read( (new FileInputStream("resources/tiles/grass.png") ) );
+            tile[1].image = ImageIO.read( (new FileInputStream("resources/tiles/FloorTile.png") ) );
 
             tile[2] = new Tiles();
             tile[2].image = ImageIO.read( (new FileInputStream("resources/tiles/water.png") ) );
@@ -78,7 +78,7 @@ public class TileManager {
     // 0 = wall, 1 = grass, 2 = water, 3 = tree
     public void loadMap() {
         try {
-            InputStream is = new FileInputStream("resources/tiles/map.txt");
+            InputStream is = new FileInputStream("resources/tiles/schoolmap.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
