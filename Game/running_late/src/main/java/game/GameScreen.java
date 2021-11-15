@@ -6,8 +6,11 @@ import game.objects.Object;
 import game.stats.Score;
 import game.tiles.TileManager;
 import game.objects.ObjectSetter;
+import game.states.GameState;
 import game.utils.CollisionHandler;
 import game.utils.KeyHandler;
+import game.utils.MouseInput;
+import game.states.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +30,7 @@ public class GameScreen extends JPanel implements Runnable {
 
     // A KeyHandler to handle all input
     KeyHandler input = new KeyHandler();
+    MouseInput mouseInput = new MouseInput();
 
     // A Collision Handler to handle all collisions
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -49,6 +53,10 @@ public class GameScreen extends JPanel implements Runnable {
     // A setter to set the location of each enemy
     public EnemySetter eSetter = new EnemySetter(this, player);
 
+    // Title screen or opening landing page
+
+    public TitleScreenPanel titleScreenPanel = new TitleScreenPanel(this);
+
 
     // Creates the game window
     public GameScreen(){
@@ -59,6 +67,7 @@ public class GameScreen extends JPanel implements Runnable {
         setBackground(Color.black);
         setDoubleBuffered(true);
         addKeyListener(input);
+        addMouseListener(mouseInput);
 
         gameFrame.setResizable(false);
         gameFrame.pack();
@@ -134,30 +143,47 @@ public class GameScreen extends JPanel implements Runnable {
         super.paintComponent(graphic);
         Graphics2D G2D = (Graphics2D)graphic;
 
-        // Draws the tiles
-        tileManager.draw(G2D);
+        switch (GameState.gameState){
+            case MENU:
+                titleScreenPanel.draw(G2D);
+                G2D.dispose();
+                break;
 
-        // Draws the objects
-        for(int i = 0; i < obj.length; i++){
-            if(obj[i] != null){
-                obj[i].draw(G2D,this);
-            }
+            case PLAYING:
+                // Draws the tiles
+                tileManager.draw(G2D);
+        
+                // Draws the objects
+                for(int i = 0; i < obj.length; i++){
+                    if(obj[i] != null){
+                        obj[i].draw(G2D,this);
+                    }
+                }
+        
+                // Draws the enemies
+                for(int i = 0; i < enemy.length; i++){
+                    if(enemy[i] != null){
+                        enemy[i].draw(G2D);
+                    }
+                }
+        
+                // Draws the player
+                player.draw(G2D);
+        
+                // Draws the score
+                score.draw(G2D);
+        
+                G2D.dispose();
+                break;
+            
+            case EXIT:
+                System.exit(0);
+                break;
+
+            case SETTINGS:
+                
+
         }
-
-        // Draws the enemies
-        for(int i = 0; i < enemy.length; i++){
-            if(enemy[i] != null){
-                enemy[i].draw(G2D);
-            }
-        }
-
-        // Draws the player
-        player.draw(G2D);
-
-        // Draws the score
-        score.draw(G2D);
-
-        G2D.dispose();
 
     }
 
