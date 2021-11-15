@@ -188,7 +188,7 @@ public class GameScreen extends JPanel implements Runnable {
 
             case PAUSED:
                 gamePauseMenu.draw(G2D);
-
+                break;
             case GAMEOVER:
                 gameOverMenu.draw(G2D);
         }

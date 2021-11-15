@@ -70,7 +70,7 @@ public class Player extends Character {
 
         if (enemyCollision) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
             catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
