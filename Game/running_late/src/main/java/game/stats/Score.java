@@ -15,6 +15,6 @@ public class Score {
         graphic.setFont(font);
         graphic.setColor(Color.white);
         graphic.drawString("Score: " + currentScore, 10, 30);
-        graphic.drawString("00:00", 10, 70);
+//        graphic.drawString("00:00", 10, 70);
     }
 }

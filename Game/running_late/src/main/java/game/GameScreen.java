@@ -4,6 +4,7 @@ import game.characters.EnemySetter;
 import game.characters.Player;
 import game.objects.Object;
 import game.stats.Score;
+import game.stats.Stopwatch;
 import game.tiles.TileManager;
 import game.objects.ObjectSetter;
 import game.states.GameState;
@@ -27,6 +28,9 @@ public class GameScreen extends JPanel implements Runnable {
 
     // A score label:
     public Score score = new Score();
+
+    //Stopwatch:
+    public Stopwatch timeLabel = new Stopwatch();
 
     // A KeyHandler to handle all input
     public KeyHandler input = new KeyHandler();
@@ -77,6 +81,7 @@ public class GameScreen extends JPanel implements Runnable {
         gameFrame.pack();
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameFrame.add(this);
+        gameFrame.pack();
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);
         setFocusable(true);
@@ -156,6 +161,7 @@ public class GameScreen extends JPanel implements Runnable {
             case PLAYING:
                 // Draws the tiles
                 tileManager.draw(G2D);
+                timeLabel.startTimer();
 
                 
         
@@ -178,6 +184,9 @@ public class GameScreen extends JPanel implements Runnable {
         
                 // Draws the score
                 score.draw(G2D);
+
+                // Draws the timer
+                timeLabel.draw(G2D);
         
                 G2D.dispose();
                 break;
@@ -188,12 +197,17 @@ public class GameScreen extends JPanel implements Runnable {
 
             case PAUSED:
                 gamePauseMenu.draw(G2D);
+                score.draw(G2D);
+                timeLabel.stopTimer();
+                timeLabel.draw(G2D);
                 break;
+
             case GAMEOVER:
                 gameOverMenu.draw(G2D);
+                score.draw(G2D);
+                timeLabel.stopTimer();
+                timeLabel.draw(G2D);
         }
 
     }
-
-
 }

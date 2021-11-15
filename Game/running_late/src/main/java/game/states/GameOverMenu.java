@@ -1,6 +1,7 @@
 package game.states;
 
 import game.GameScreen;
+import game.stats.Score;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,6 +15,9 @@ public class GameOverMenu {
 
     public GameOverMenu(GameScreen board){
         getImage();
+//        public Score score = new Score();
+//        // Draws the score
+//        score.draw(G2D);
         return;
     }
 
