@@ -12,6 +12,7 @@ import game.utils.CollisionHandler;
 import game.utils.KeyHandler;
 import game.utils.MouseInput;
 import game.states.*;
+import game.objects.Exit;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,7 +47,7 @@ public class GameScreen extends JPanel implements Runnable {
     public Player player = new Player(this, input, score, 100, 100);
 
     // A list of all the game's objects
-    public Object obj[] = new Object[23];
+    public Object obj[] = new Object[24];
 
     // A list of all the game's enemies
     public Enemy enemy[] = new Enemy[12];
@@ -64,6 +65,8 @@ public class GameScreen extends JPanel implements Runnable {
     public GamePauseMenu gamePauseMenu = new GamePauseMenu(this);
 
     public GameOverMenu gameOverMenu = new GameOverMenu(this);
+
+    public GameWinMenu gameWinMenu = new GameWinMenu(this);
 
 
     // Creates the game window
@@ -174,6 +177,8 @@ public class GameScreen extends JPanel implements Runnable {
                         obj[i].draw(G2D,this);
                     }
                 }
+                //draw exit
+                obj[23].draw(G2D,this);
 
                 //Draws Bonus at random
                 if(counter > 60){
@@ -228,6 +233,14 @@ public class GameScreen extends JPanel implements Runnable {
                 score.draw(G2D);
                 timeLabel.stopTimer();
                 timeLabel.draw(G2D);
+                break;
+
+            case GAMEWIN:
+                gameWinMenu.draw(G2D);
+                score.draw(G2D);
+                timeLabel.stopTimer();
+                timeLabel.draw(G2D);
+                break;
         }
 
     }
