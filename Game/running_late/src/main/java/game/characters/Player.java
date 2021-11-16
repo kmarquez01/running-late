@@ -173,33 +173,37 @@ public class Player extends Character {
 
     public void pickUpObject(int i){
         if ( i != 999){
-            if (screen.obj[i].isExit && numRewardsCollected==7){
-                try {
-                    Thread.sleep(500);
-                }
-                catch(InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
-                GameState.gameState = GameState.GAMEWIN;
-            }
-            if (!screen.obj[i].hurtful) {
-                score.currentScore++;
-                if (screen.obj[i] instanceof Reward){
-                    numRewardsCollected+=1;
+            if (screen.obj[i].isExit) {
+                if (numRewardsCollected == 7) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                    GameState.gameState = GameState.GAMEWIN;
+                } else {
+                    GameState.gameState = GameState.PLAYING;
                 }
             }
-            else if (screen.obj[i].hurtful) {
-                score.currentScore--;
-                hurt = true;
 
-
+            else {
+                if (!screen.obj[i].hurtful && !screen.obj[i].isExit) {
+                    score.currentScore++;
+                    if (screen.obj[i] instanceof Reward) {
+                        numRewardsCollected += 1;
+                    }
+                } else if (screen.obj[i].hurtful) {
+                    score.currentScore--;
+                    hurt = true;
+                }
+                screen.obj[i] = null;
             }
-            screen.obj[i] = null;
         }
     }
 
-    //getter for numRewardsCollected variable for GameScreen to access
-    public int getNumRewards(){ return numRewardsCollected; }
+
+//    //getter for numRewardsCollected variable for GameScreen to access
+//    public int getNumRewards(){ return numRewardsCollected; }
 
     public void draw(Graphics2D G2D){
 
