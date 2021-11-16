@@ -30,19 +30,17 @@ public class GameOverMenu {
 
     int spacing = 90;
 
+    public Score currentScore = new Score();
+    
+
     public void draw(Graphics g){
 
+
         Graphics2D g2d = (Graphics2D) g;
-
-        g2d.drawImage(img, 425, 150, 550, 100, null );
-
         Font fnt = new Font("helvetica", Font.BOLD, 30);
         g.setFont(fnt);
+        g2d.drawImage(img, 425, 150, 550, 100, null );
         g.setColor(myGreen);
-        g.drawString("TIME:", 500, 400);
-        g.drawString("FINAL SCORE:", 500, 500);
-        g.drawString("REWARDS:", 500, 600);
-        g.drawString("ENEMIES HIT", 500, 700);
 
 //      g.drawString("NEW GAME", 640, 400);
         g.drawString("MAIN MENU", 1100, 850);
