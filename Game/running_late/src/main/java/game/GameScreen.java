@@ -220,6 +220,9 @@ public class GameScreen extends JPanel implements Runnable {
                 timeLabel.draw(G2D);
                 break;
 
+            case RESTART:
+                break;
+
             case GAMEOVER:
                 gameOverMenu.draw(G2D);
                 score.draw(G2D);

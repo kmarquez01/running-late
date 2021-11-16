@@ -1,7 +1,7 @@
 package game.characters;
 
 import java.awt.*;
-import java.awt.event.KeyListener;
+
 import java.awt.image.BufferedImage;
 
 public class Character {

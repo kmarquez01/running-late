@@ -1,8 +1,7 @@
 package game.characters;
 
 import game.GameScreen;
-import game.objects.Punishment;
-import game.objects.Reward;
+
 
 public class EnemySetter {
 

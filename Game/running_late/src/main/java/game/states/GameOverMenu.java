@@ -13,6 +13,7 @@ public class GameOverMenu {
     Color myGreen = new Color(189, 221, 114);
     Image img = null;
 
+
     public GameOverMenu(GameScreen board){
         getImage();
 //        public Score score = new Score();
@@ -39,8 +40,8 @@ public class GameOverMenu {
         g.setFont(fnt);
         g.setColor(myGreen);
         g.drawString("^ (it says paused game cuz I didnt have time to make a new gameover label lol ", 150, 500);
-//        g.drawString("NEW GAME", 640, 400);
-//        g.drawString("MAIN MENU", 640, 525);
+//      g.drawString("NEW GAME", 640, 400);
+        g.drawString("MAIN MENU", 1100, 850);
 
 
     }
@@ -48,7 +49,8 @@ public class GameOverMenu {
     public void getImage(){
 
         try {
-            img = ImageIO.read(new FileInputStream("resources/paused.png"));
+            img = ImageIO.read(new FileInputStream("resources/gameover.png"));
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package game.characters;
 
 import game.GameScreen;
+import game.objects.Reward;
 import game.states.GameState;
 import game.stats.Score;
 import game.stats.Stopwatch;
@@ -11,7 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
 
 public class Player extends Character {
 

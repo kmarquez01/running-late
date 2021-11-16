@@ -19,6 +19,8 @@ public class MouseInput implements MouseListener{
         int mousex = e.getX();
         int mousey = e.getY();
 
+    if(GameState.gameState == GameState.MENU){
+
         if(mousex >= 600 && mousex <= 800)
         {
             if(mousey >= 375 && mousey <= 405)
@@ -34,6 +36,49 @@ public class MouseInput implements MouseListener{
                 GameState.gameState = GameState.EXIT;
             }
         }
+    }
+
+    if(GameState.gameState == GameState.PAUSED){
+
+        if(mousex >= 600 && mousex <= 800)
+        {
+            if(mousey >= 375 && mousey <= 405)
+            {
+                GameState.gameState = GameState.PLAYING;
+            }
+        }
+
+        if(mousex >= 660 && mousex <= 735)
+        {
+            if(mousey >= 500 && mousey <= 530)
+            {
+                GameState.gameState = GameState.RESTART;
+            }
+        }
+
+        if(mousex >= 75 && mousex <= 275 )
+        {
+            if(mousey >= 820 && mousey <= 875)
+            {
+                GameState.gameState = GameState.MENU;
+            }
+        }
+        
+    }
+
+    if(GameState.gameState == GameState.GAMEOVER){
+
+        if(mousex >= 1100 && mousex <= 1275)
+        {
+            if(mousey >= 825 && mousey <= 860)
+            {
+            
+                GameState.gameState = GameState.MENU;
+            }
+        }
+
+    }
+
 
         /*
         public Rectangle playB = new Rectangle(600, 375, 200, 30);
