@@ -85,5 +85,27 @@ public class ObjectSetter {
         gs.obj[17] = new Punishment();
         gs.obj[17].worldX = 16 * gs.tileSize;
         gs.obj[17].worldY = 4 * gs.tileSize;
+
+        // Bonus Rewards
+        gs.obj[18] = new BonusReward();
+        gs.obj[18].worldX = 9 * gs.tileSize;
+        gs.obj[18].worldY = 2 * gs.tileSize;
+
+        gs.obj[19] = new BonusReward();
+        gs.obj[19].worldX = 1 * gs.tileSize;
+        gs.obj[19].worldY = 14 * gs.tileSize;
+
+        gs.obj[20] = new BonusReward();
+        gs.obj[20].worldX = 7 * gs.tileSize;
+        gs.obj[20].worldY = 18 * gs.tileSize;
+
+        gs.obj[21] = new BonusReward();
+        gs.obj[21].worldX = 23 * gs.tileSize;
+        gs.obj[21].worldY = 8 * gs.tileSize;
+
+        gs.obj[22] = new BonusReward();
+        gs.obj[22].worldX = 22 * gs.tileSize;
+        gs.obj[22].worldY = 18 * gs.tileSize;
+
     }
 }
