@@ -237,6 +237,7 @@ public class GameScreen extends JPanel implements Runnable {
                 score.draw(G2D);
                 timeLabel.stopTimer();
                 timeLabel.draw(G2D);
+                break;
         }
 
     }
