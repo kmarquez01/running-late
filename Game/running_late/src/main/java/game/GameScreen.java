@@ -172,7 +172,7 @@ public class GameScreen extends JPanel implements Runnable {
                 
         
                 // Draws the objects (except Bonus Rewards)
-                for(int i = 0; i < obj.length-5; i++){
+                for(int i = 0; i < obj.length-6; i++){
                     if(obj[i] != null){
                         obj[i].draw(G2D,this);
                     }
