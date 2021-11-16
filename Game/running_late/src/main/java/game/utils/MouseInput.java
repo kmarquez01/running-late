@@ -48,7 +48,7 @@ public class MouseInput implements MouseListener{
             }
         }
 
-        if(mousex >= 660 && mousex <= 735)
+        if(mousex >= 660 && mousex <= 790)
         {
             if(mousey >= 500 && mousey <= 530)
             {

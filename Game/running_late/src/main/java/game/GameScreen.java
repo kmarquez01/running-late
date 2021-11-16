@@ -14,8 +14,11 @@ import game.utils.MouseInput;
 import game.states.*;
 import game.objects.Exit;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 
 public class GameScreen extends JPanel implements Runnable {
 
@@ -68,11 +71,12 @@ public class GameScreen extends JPanel implements Runnable {
 
     public GameWinMenu gameWinMenu = new GameWinMenu(this);
 
+    
 
     // Creates the game window
     public GameScreen(){
 
-        JFrame gameFrame = new JFrame("276 game");
+        JFrame gameFrame = new JFrame("Running Late");
         gameFrame.setPreferredSize(new Dimension(tileSize * gameCol, tileSize * gameRow));
 
         setBackground(Color.black);
@@ -136,15 +140,18 @@ public class GameScreen extends JPanel implements Runnable {
     // everything that can change with each frame goes here:
     private void refresh() {
 
-        // player movement
-        player.move();
+       
+            // player movement
+            player.move();
 
-        // enemy movement
-        for(int i = 0; i < enemy.length; i++){
-            if(enemy[i] != null){
-                enemy[i].move();
+            // enemy movement
+            for(int i = 0; i < enemy.length; i++){
+                if(enemy[i] != null){
+                    enemy[i].move();
+                }
             }
-        }
+        
+          
     }
 
     // This is called everytime repaint() is called
@@ -223,9 +230,29 @@ public class GameScreen extends JPanel implements Runnable {
                 score.draw(G2D);
                 timeLabel.stopTimer();
                 timeLabel.draw(G2D);
+                if(GameState.gameState == GameState.RESTART){
+                    G2D.dispose();
+                }
                 break;
 
             case RESTART:
+
+                score.draw(G2D);
+                timeLabel.stopTimer();
+                timeLabel.draw(G2D);
+                player.position = new Point(100,100);
+                
+                
+
+                setupGame();
+                
+                tileManager.draw(G2D);
+                timeLabel.startTimer();
+
+                timeLabel.draw(G2D);
+        
+               GameState.gameState = GameState.PLAYING;
+       
                 break;
 
             case GAMEOVER:
