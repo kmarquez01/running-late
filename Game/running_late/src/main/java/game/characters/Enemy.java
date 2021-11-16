@@ -1,6 +1,7 @@
 package game.characters;
 
 import game.GameScreen;
+import game.states.GameState;
 import game.utils.KeyHandler;
 
 import javax.imageio.ImageIO;
@@ -62,89 +63,84 @@ public class Enemy extends Character {
 
     public void move() {
 
-        if (player.position.y != position.y || player.position.x != position.x) {
+        if(GameState.gameState == GameState.PLAYING) {
 
-            if (player.position.y < position.y) {
-                direction = "up";
-            } else if (player.position.y > position.y) {
-                direction = "down";
-            }else if (player.position.x > position.x) {
-                direction = "right";
-            } else if (player.position.x < position.x) {
-                direction = "left";
-            }
+            if (player.position.y != position.y || player.position.x != position.x) {
 
-            // check tile for collision
-            collisionOn = false;
-            screen.collisionHandler.checkTile(this);
-
-            // have to do where if collison, change either 90 or 180 degree
-            if (collisionOn){
-                if (direction=="up"){
-                    direction = "right";
-                    collisionOn = false;
-                }
-                else if (direction=="up"){
-                    direction = "left";
-                    collisionOn = false;
-                }
-                else if (direction=="down"){
-                    direction = "right";
-                    collisionOn = false;
-                }
-                else if (direction=="down"){
-                    direction = "left";
-                    collisionOn = false;
-                }
-                else if (direction=="left"){
+                if (player.position.y < position.y) {
                     direction = "up";
-                    collisionOn = false;
-                }
-                else if (direction=="left"){
+                } else if (player.position.y > position.y) {
                     direction = "down";
-                    collisionOn = false;
+                } else if (player.position.x > position.x) {
+                    direction = "right";
+                } else if (player.position.x < position.x) {
+                    direction = "left";
                 }
-                else if (direction=="right"){
-                    direction = "up";
-                    collisionOn = false;
-                }
-                else if (direction=="right"){
-                    direction = "down";
-                    collisionOn = false;
-                }
-            }
 
-            // if collision:
-            if (!collisionOn) {
-                if (direction == "up") {
-                    position.y -= speed;
-                } else if (direction == "down") {
-                    position.y += speed;
-                } else if (direction == "left") {
-                    position.x -= speed;
-                } else if (direction == "right") {
-                    position.x += speed;
-                }
-            }
+                // check tile for collision
+                collisionOn = false;
+                screen.collisionHandler.checkTile(this);
 
-            // for drawing the character moving:
-            spriteCounter++;
-            if (spriteCounter > 4) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
-                    spriteNum = 3;
-                } else if (spriteNum == 3) {
-                    spriteNum = 4;
-                } else if (spriteNum == 4) {
-                    spriteNum = 1;
+                // have to do where if collison, change either 90 or 180 degree
+                if (collisionOn) {
+                    if (direction == "up") {
+                        direction = "right";
+                        collisionOn = false;
+                    } else if (direction == "up") {
+                        direction = "left";
+                        collisionOn = false;
+                    } else if (direction == "down") {
+                        direction = "right";
+                        collisionOn = false;
+                    } else if (direction == "down") {
+                        direction = "left";
+                        collisionOn = false;
+                    } else if (direction == "left") {
+                        direction = "up";
+                        collisionOn = false;
+                    } else if (direction == "left") {
+                        direction = "down";
+                        collisionOn = false;
+                    } else if (direction == "right") {
+                        direction = "up";
+                        collisionOn = false;
+                    } else if (direction == "right") {
+                        direction = "down";
+                        collisionOn = false;
+                    }
                 }
-                spriteCounter = 0;
-            }
 
-        }
-        else {
-            spriteNum = 1;
+                // if collision:
+                if (!collisionOn) {
+                    if (direction == "up") {
+                        position.y -= speed;
+                    } else if (direction == "down") {
+                        position.y += speed;
+                    } else if (direction == "left") {
+                        position.x -= speed;
+                    } else if (direction == "right") {
+                        position.x += speed;
+                    }
+                }
+
+                // for drawing the character moving:
+                spriteCounter++;
+                if (spriteCounter > 4) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 3;
+                    } else if (spriteNum == 3) {
+                        spriteNum = 4;
+                    } else if (spriteNum == 4) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+
+            } else {
+                spriteNum = 1;
+            }
         }
     }
 
