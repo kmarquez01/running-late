@@ -230,19 +230,12 @@ public class GameScreen extends JPanel implements Runnable {
                 score.draw(G2D);
                 timeLabel.stopTimer();
                 timeLabel.draw(G2D);
-                if(GameState.gameState == GameState.RESTART){
-                    G2D.dispose();
-                }
+                
                 break;
 
             case RESTART:
-
-                score.draw(G2D);
-                timeLabel.stopTimer();
-                timeLabel.draw(G2D);
+            
                 player.position = new Point(100,100);
-                
-                
 
                 setupGame();
                 

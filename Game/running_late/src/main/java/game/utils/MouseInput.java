@@ -5,6 +5,8 @@ import java.awt.event.MouseListener;
 
 import game.states.GameState;
 
+
+
 public class MouseInput implements MouseListener{
 
     @Override
@@ -25,7 +27,7 @@ public class MouseInput implements MouseListener{
         {
             if(mousey >= 375 && mousey <= 405)
             {
-                GameState.gameState = GameState.PLAYING;
+                GameState.gameState = GameState.RESTART;
             }
         }
 
@@ -60,6 +62,7 @@ public class MouseInput implements MouseListener{
         {
             if(mousey >= 820 && mousey <= 875)
             {
+            
                 GameState.gameState = GameState.MENU;
             }
         }
