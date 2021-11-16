@@ -178,7 +178,9 @@ public class GameScreen extends JPanel implements Runnable {
                     }
                 }
                 //draw exit
-                obj[23].draw(G2D,this);
+                if(player.getNumRewards() == 7){
+                    obj[23].draw(G2D,this);
+                }
 
                 //Draws Bonus at random
                 if(counter > 60){
