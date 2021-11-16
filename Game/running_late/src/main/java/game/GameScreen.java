@@ -186,7 +186,7 @@ public class GameScreen extends JPanel implements Runnable {
                     counter --;
                 }
                 else{
-                    counter = 240; //Reset counter
+                    counter = 480; //Reset counter
                     random_int = (int)Math.floor(Math.random()*(5)+18); //Re-choose another Bonus Reward
                 }
         
