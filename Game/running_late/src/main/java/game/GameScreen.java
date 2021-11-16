@@ -46,7 +46,7 @@ public class GameScreen extends JPanel implements Runnable {
     public Player player = new Player(this, input, score, 100, 100);
 
     // A list of all the game's objects
-    public Object obj[] = new Object[12];
+    public Object obj[] = new Object[18];
 
     // A list of all the game's enemies
     public Enemy enemy[] = new Enemy[12];
