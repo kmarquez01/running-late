@@ -17,4 +17,8 @@ public class Score {
         graphic.drawString("Score: " + currentScore, 10, 30);
 //        graphic.drawString("00:00", 10, 70);
     }
+
+    public int getScoreNum() {
+        return currentScore;
+    }
 }

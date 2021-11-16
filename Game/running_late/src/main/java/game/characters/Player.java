@@ -3,6 +3,7 @@ package game.characters;
 import game.GameScreen;
 import game.states.GameState;
 import game.stats.Score;
+import game.stats.Stopwatch;
 import game.utils.KeyHandler;
 
 import javax.imageio.ImageIO;
@@ -75,6 +76,10 @@ public class Player extends Character {
             catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+            GameState.gameState = GameState.GAMEOVER;
+        }
+
+        if (score.getScoreNum() < 0){
             GameState.gameState = GameState.GAMEOVER;
         }
 
