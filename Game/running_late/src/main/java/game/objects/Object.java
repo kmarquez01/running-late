@@ -13,6 +13,7 @@ public class Object {
 
     public boolean collision = false;
     public boolean hurtful = false;
+    public boolean isExit = false;
 
     public int worldX, worldY;
 

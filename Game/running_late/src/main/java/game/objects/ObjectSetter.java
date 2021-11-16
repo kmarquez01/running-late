@@ -107,5 +107,8 @@ public class ObjectSetter {
         gs.obj[22].worldX = 22 * gs.tileSize;
         gs.obj[22].worldY = 18 * gs.tileSize;
 
+        gs.obj[23] = new Exit();
+
+
     }
 }

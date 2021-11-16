@@ -1,6 +1,7 @@
 package game.characters;
 
 import game.GameScreen;
+import game.objects.Reward;
 import game.states.GameState;
 import game.stats.Score;
 import game.stats.Stopwatch;
@@ -20,6 +21,7 @@ public class Player extends Character {
     private Score score;
     public boolean hurt = false;
     public boolean enemyCollision = false;
+    int numRewardsCollected = 0;
 
 
     public Player (GameScreen screen, KeyHandler input, Score score, int x, int y) {
@@ -171,9 +173,21 @@ public class Player extends Character {
 
     public void pickUpObject(int i){
         if ( i != 999){
+            if (screen.obj[i].isExit && numRewardsCollected==7){
+                try {
+                    Thread.sleep(500);
+                }
+                catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                GameState.gameState = GameState.GAMEWIN;
+            }
             if (!screen.obj[i].hurtful) {
                 score.currentScore++;
-             }
+                if (screen.obj[i] instanceof Reward){
+                    numRewardsCollected+=1;
+                }
+            }
             else if (screen.obj[i].hurtful) {
                 score.currentScore--;
                 hurt = true;
