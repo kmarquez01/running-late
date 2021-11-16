@@ -198,6 +198,9 @@ public class Player extends Character {
         }
     }
 
+    //getter for numRewardsCollected variable for GameScreen to access
+    public int getNumRewards(){ return numRewardsCollected; }
+
     public void draw(Graphics2D G2D){
 
         BufferedImage sprite = null;
