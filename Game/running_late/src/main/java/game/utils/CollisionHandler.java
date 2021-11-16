@@ -197,9 +197,8 @@ public class CollisionHandler {
                     case "up":
                         entity.solidArea.y -= entity.speed;
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
-                            //if(screen.enemy[i].collision){
                                 entity.enemyCollision = true;
-                            //}
+                                entity.hurt = true;
                             if(player){
                                 index = i;
                             }
@@ -208,9 +207,8 @@ public class CollisionHandler {
                     case "down":
                         entity.solidArea.y += entity.speed;
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
-                            //if(screen.enemy[i].collision){
                                 entity.enemyCollision = true;
-                            //}
+                                entity.hurt = true;
                             if(player){
                                 index = i;
                             }
@@ -219,9 +217,8 @@ public class CollisionHandler {
                     case "left":
                         entity.solidArea.x -= entity.speed;
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
-                            //if(screen.enemy[i].collision){
                                 entity.enemyCollision = true;
-                            //}
+                                entity.hurt = true;
                             if(player){
                                 index = i;
                             }
@@ -230,9 +227,8 @@ public class CollisionHandler {
                     case "right":
                         entity.solidArea.x += entity.speed;
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
-                            //if(screen.enemy[i].collision){
                                 entity.enemyCollision = true;
-                           // }
+                                entity.hurt = true;
                             if (player){
                                 index = i;
                             }

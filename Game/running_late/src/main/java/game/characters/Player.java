@@ -18,7 +18,7 @@ public class Player extends Character {
     private GameScreen screen;
     private KeyHandler input;
     private Score score;
-    private boolean hurt = false;
+    public boolean hurt = false;
     public boolean enemyCollision = false;
 
 
@@ -80,7 +80,30 @@ public class Player extends Character {
         }
 
         if (score.getScoreNum() < 0){
+            try {
+                Thread.sleep(500);
+            }
+            catch(InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             GameState.gameState = GameState.GAMEOVER;
+        }
+
+        if (hurt) {
+            // wait 1/5 second
+            Thread imageLoadingThread = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(500);
+                        hurt = false;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // end loop
+                }
+            });
+            imageLoadingThread.start();
+
         }
 
         if (!hurt) {
@@ -154,8 +177,7 @@ public class Player extends Character {
             else if (screen.obj[i].hurtful) {
                 score.currentScore--;
                 hurt = true;
-                // wait 2/3 a second
-                hurt = false;
+
 
             }
             screen.obj[i] = null;
@@ -167,7 +189,7 @@ public class Player extends Character {
         BufferedImage sprite = null;
 
         if (hurt) {
-            // make the player red
+            G2D.setXORMode(new Color(200, 0, 0));
         }
 
         if (direction == "up") {
