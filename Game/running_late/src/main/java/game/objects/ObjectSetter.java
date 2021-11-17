@@ -103,8 +103,8 @@ public class ObjectSetter {
         while(tileAvailable == false){ //loops until chosen tile is plausible
             isWallTile = gs.tileManager.MapTileNum[x][y];
             if(!gs.tileManager.tile[isWallTile].collision){
-                for(int i=0; i<gs.obj.length-2; i++){
-                    // checks if reward is already on tile
+                for(int i=0; i<gs.obj.length-1; i++){
+                    // checks if object is already on tile
                     if(gs.obj[i] != null){
                         if( (gs.obj[i].worldX == x * gs.tileSize) && (gs.obj[i].worldY == y * gs.tileSize) ){
                             isObjectTile = true;
