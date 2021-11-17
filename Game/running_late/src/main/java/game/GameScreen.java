@@ -173,12 +173,12 @@ public class GameScreen extends JPanel implements Runnable {
         switch (GameState.gameState){
             case MENU:
 
+                score.currentScore = 0;
+                player.enemyCollision = false;
                 if(musicFlag != 1){ // plays Main Menu music
                     playMusic(0);
                     musicFlag = 1;
                 }
-                score.currentScore = 0;
-                player.enemyCollision = false;
                 titleScreenPanel.draw(G2D);
                 break;
 
