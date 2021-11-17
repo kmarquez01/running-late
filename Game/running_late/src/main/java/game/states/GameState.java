@@ -2,8 +2,8 @@ package game.states;
 
 public enum GameState {
 
-    PLAYING,
     MENU,
+    PLAYING,
     RESTART,
     EXIT,
     PAUSED,

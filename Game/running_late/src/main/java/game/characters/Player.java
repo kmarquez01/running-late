@@ -72,23 +72,32 @@ public class Player extends Character {
     public void move() {
 
         if (enemyCollision) {
-            try {
+            
+            /*try {
                 Thread.sleep(500);
             }
             catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+            */
             GameState.gameState = GameState.GAMEOVER;
+           
+
+        
         }
 
         if (score.getScoreNum() < 0){
+            
+            /*
             try {
                 Thread.sleep(500);
             }
             catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+            */
             GameState.gameState = GameState.GAMEOVER;
+
         }
 
         if (hurt) {

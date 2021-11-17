@@ -35,7 +35,8 @@ public class GameWinMenu {
         Font fnt = new Font("helvetica", Font.BOLD, 30);
         g.setFont(fnt);
         g.setColor(myGreen);
-        g.drawString("you won! (make new label)", 150, 500);
+        g.drawString("Congratulations, you did the impossible!", 450, 500);
+        g.drawString("MAIN MENU", 1100, 850);
 //        g.drawString("NEW GAME", 640, 400);
 //        g.drawString("MAIN MENU", 640, 525);
 
@@ -45,7 +46,7 @@ public class GameWinMenu {
     public void getImage(){
 
         try {
-            img = ImageIO.read(new FileInputStream("resources/paused.png"));
+            img = ImageIO.read(new FileInputStream("resources/win.png"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

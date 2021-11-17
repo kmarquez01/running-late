@@ -44,6 +44,7 @@ public class GameOverMenu {
 
 //      g.drawString("NEW GAME", 640, 400);
         g.drawString("MAIN MENU", 1100, 850);
+        g.drawString("NEW GAME", 125, 850);
 
 
     }

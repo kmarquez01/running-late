@@ -69,7 +69,7 @@ public class MouseInput implements MouseListener{
         
     }
 
-    if(GameState.gameState == GameState.GAMEOVER){
+    if(GameState.gameState == GameState.GAMEOVER || GameState.gameState == GameState.GAMEWIN){
 
         if(mousex >= 1100 && mousex <= 1275)
         {
@@ -79,7 +79,15 @@ public class MouseInput implements MouseListener{
                 GameState.gameState = GameState.MENU;
             }
         }
-
+        
+        if(mousex >= 125 && mousex <= 275 )
+        {
+            if(mousey >= 820 && mousey <= 875)
+            {
+            
+                GameState.gameState = GameState.RESTART;
+            }
+        }
     }
 
 
