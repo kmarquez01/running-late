@@ -193,14 +193,12 @@ public class GameScreen extends JPanel implements Runnable {
 
                 
         
-                // Draws the objects (except Bonus Rewards)
-                for(int i = 0; i < obj.length-2; i++){
+                // Draws the objects and exit (except Bonus Rewards)
+                for(int i = 0; i < obj.length-1; i++){
                     if(obj[i] != null){
                         obj[i].draw(G2D,this);
                     }
                 }
-                //draw exit
-                obj[19].draw(G2D,this);
 
                 //Draws Bonus at random
                 if(counter > 60){
@@ -208,8 +206,8 @@ public class GameScreen extends JPanel implements Runnable {
                         aSetter.setBonusReward(); // makes and sets bonus reward at random possible location
                         isBonusSet = true;
                     }
-                    if(obj[18] != null){
-                        obj[18].draw(G2D,this);
+                    if(obj[19] != null){
+                        obj[19].draw(G2D,this);
                     }
                     counter --;
                 }
@@ -263,14 +261,12 @@ public class GameScreen extends JPanel implements Runnable {
 
                 setupGame();
                 
-                 // Draws the objects (except Bonus Rewards)
-                 for(int i = 0; i < obj.length-2; i++){
+                 // Draws the objects and exit (except Bonus Rewards)
+                 for(int i = 0; i < obj.length-1; i++){
                     if(obj[i] != null){
                         obj[i].draw(G2D,this);
                     }
                 }
-                //draw exit
-                obj[19].draw(G2D,this);
 
                 //Draws Bonus at random
                 if(counter > 60){
@@ -278,8 +274,8 @@ public class GameScreen extends JPanel implements Runnable {
                         aSetter.setBonusReward();
                         isBonusSet = true;
                     }
-                    if(obj[18] != null){
-                        obj[18].draw(G2D,this);
+                    if(obj[19] != null){
+                        obj[19].draw(G2D,this);
                     }
                     counter --;
                 }
