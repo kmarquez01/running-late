@@ -197,11 +197,13 @@ public class Player extends Character {
 
             else {
                 if (!screen.obj[i].hurtful && !screen.obj[i].isExit) {
+                    screen.playEffects(2);
                     score.currentScore++;
                     if (screen.obj[i] instanceof Reward) {
                         numRewardsCollected += 1;
                     }
                 } else if (screen.obj[i].hurtful) {
+                    screen.playEffects(3);
                     score.currentScore--;
                     hurt = true;
                 }
