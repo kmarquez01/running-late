@@ -17,7 +17,7 @@ public class Sound {
         soundURL[2] = new File("resources/sounds/Reward.wav");
         soundURL[3] = new File("resources/sounds/Hurt.wav");
         soundURL[4] = new File("resources/sounds/PauseGame.wav");
-        soundURL[5] = new File("resources/sounds/UnpauseGame.wav"); //not in use
+        soundURL[5] = new File("resources/sounds/UnpauseGame.wav");
         soundURL[6] = new File("resources/sounds/Loose.wav"); //not in use
         soundURL[7] = new File("resources/sounds/GameOver.wav");
         soundURL[8] = new File("resources/sounds/GameWin.wav");
