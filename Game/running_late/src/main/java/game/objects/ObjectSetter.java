@@ -86,7 +86,7 @@ public class ObjectSetter {
         gs.obj[17].worldX = 16 * gs.tileSize;
         gs.obj[17].worldY = 4 * gs.tileSize;
 
-        gs.obj[19] = new Exit();
+        gs.obj[18] = new Exit();
 
     }
 
@@ -105,8 +105,10 @@ public class ObjectSetter {
             if(!gs.tileManager.tile[isWallTile].collision){
                 for(int i=0; i<gs.obj.length-2; i++){
                     // checks if reward is already on tile
-                    if( (gs.obj[i].worldX == x * gs.tileSize) && (gs.obj[i].worldY == y * gs.tileSize) ){
-                        isObjectTile = true;
+                    if(gs.obj[i] != null){
+                        if( (gs.obj[i].worldX == x * gs.tileSize) && (gs.obj[i].worldY == y * gs.tileSize) ){
+                            isObjectTile = true;
+                        }
                     }
                 }
                 if(!isObjectTile){
@@ -121,8 +123,8 @@ public class ObjectSetter {
             }
         }
 
-        gs.obj[18] = new BonusReward(); // sets bonus reward at random generated x,y coords
-        gs.obj[18].worldX = x * gs.tileSize;
-        gs.obj[18].worldY = y * gs.tileSize;
+        gs.obj[19] = new BonusReward(); // sets bonus reward at random generated x,y coords
+        gs.obj[19].worldX = x * gs.tileSize;
+        gs.obj[19].worldY = y * gs.tileSize;
     }
 }
