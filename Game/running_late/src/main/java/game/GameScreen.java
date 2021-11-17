@@ -11,6 +11,7 @@ import game.states.GameState;
 import game.utils.CollisionHandler;
 import game.utils.KeyHandler;
 import game.utils.MouseInput;
+import game.sound.Sound;
 import game.states.*;
 import game.objects.Exit;
 
@@ -39,6 +40,10 @@ public class GameScreen extends JPanel implements Runnable {
     // A KeyHandler to handle all input
     public KeyHandler input = new KeyHandler();
     public MouseInput mouseInput = new MouseInput();
+
+    //Music and Sound effects for the game
+    Sound music = new Sound();
+    Sound effects = new Sound();
 
     // A Collision Handler to handle all collisions
     public CollisionHandler collisionHandler = new CollisionHandler(this);
@@ -160,6 +165,7 @@ public class GameScreen extends JPanel implements Runnable {
     // this is how RNG works in case we add more BRs: (int)Math.floor(Math.random()*(max-min+1)+min)
     int random_int = (int)Math.floor(Math.random()*(5)+18); //Random chooses Bonus Rewards to draw
     int counter = 480; //For drawing Bonus Rewards at random spots and staying at for a specific time
+    int musicFlag = 0; //Makes sure appropriate music is being played during each state
     public void paintComponent(Graphics graphic) {
 
         super.paintComponent(graphic);
@@ -167,11 +173,21 @@ public class GameScreen extends JPanel implements Runnable {
 
         switch (GameState.gameState){
             case MENU:
+
+                if(musicFlag != 1){ // plays Main Menu music
+                    playMusic(0);
+                    musicFlag = 1;
+                }
                 titleScreenPanel.draw(G2D);
-                
                 break;
 
             case PLAYING:
+
+                if(musicFlag != 2){ // plays in Game music
+                    stopSound();
+                    playMusic(1);
+                    musicFlag = 2;
+                }
                 // Draws the tiles
                 tileManager.draw(G2D);
                 timeLabel.startTimer();
@@ -226,6 +242,11 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case PAUSED:
+                if(musicFlag != 3){ // plays Pause screen effect
+                    stopSound();
+                    playEffects(4);
+                    musicFlag = 3;
+                }
                 gamePauseMenu.draw(G2D);
                 score.draw(G2D);
                 timeLabel.stopTimer();
@@ -273,10 +294,13 @@ public class GameScreen extends JPanel implements Runnable {
                 // Draws the player
                 player.draw(G2D);
         
-                // Draws the score
+                // Draws and resets the score
+                score.currentScore = 0;
                 score.draw(G2D);
 
-                // Draws the timer
+                // Draws and resets the timer
+                timeLabel.sec = 0;
+                timeLabel.min = 0;
                 timeLabel.draw(G2D);
         
                
@@ -286,6 +310,11 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case GAMEOVER:
+                if(musicFlag != 4){ // plays Game Over effect
+                    stopSound();
+                    playEffects(7);
+                    musicFlag = 4;
+                }
                 gameOverMenu.draw(G2D);
                 player.position = new Point(100,100);
                 setupGame();
@@ -299,6 +328,11 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case GAMEWIN:
+                if(musicFlag != 5){ // plays Game Win effect
+                    stopSound();
+                    playEffects(8);
+                    musicFlag = 5;
+                }
                 gameWinMenu.draw(G2D);
                 score.draw(G2D);
                 timeLabel.stopTimer();
@@ -307,4 +341,24 @@ public class GameScreen extends JPanel implements Runnable {
         }
 
     }
+
+    //Responsible for playing all music and sound effects for the game
+    public void playMusic(int index){
+
+        music.setFile(index);
+        music.play();
+        music.loop();
+    }
+
+    public void playEffects(int index){
+
+        effects.setFile(index);
+        effects.play();
+    }
+
+    public void stopSound(){
+
+        music.stop();
+    }
+
 }
