@@ -55,7 +55,7 @@ public class GameScreen extends JPanel implements Runnable {
     public Player player = new Player(this, input, score, 100, 100);
 
     // A list of all the game's objects
-    public Object obj[] = new Object[24];
+    public Object obj[] = new Object[20];
 
     // A list of all the game's enemies
     public Enemy enemy[] = new Enemy[12];
@@ -162,9 +162,8 @@ public class GameScreen extends JPanel implements Runnable {
     // This is called everytime repaint() is called
     // It's responsible for displaying everything to the screen
     // So every graphic must go here
-    // this is how RNG works in case we add more BRs: (int)Math.floor(Math.random()*(max-min+1)+min)
-    int random_int = (int)Math.floor(Math.random()*(5)+18); //Random chooses Bonus Rewards to draw
-    int counter = 480; //For drawing Bonus Rewards at random spots and staying at for a specific time
+    int counter = 480; //For drawing Bonus Rewards at random spots and staying for a specific time
+    boolean isBonusSet = false; //checks if bonus reward has been set in ObjectSetter
     int musicFlag = 0; //Makes sure appropriate music is being played during each state
     public void paintComponent(Graphics graphic) {
 
@@ -195,18 +194,22 @@ public class GameScreen extends JPanel implements Runnable {
                 
         
                 // Draws the objects (except Bonus Rewards)
-                for(int i = 0; i < obj.length-6; i++){
+                for(int i = 0; i < obj.length-2; i++){
                     if(obj[i] != null){
                         obj[i].draw(G2D,this);
                     }
                 }
                 //draw exit
-                obj[23].draw(G2D,this);
+                obj[19].draw(G2D,this);
 
                 //Draws Bonus at random
                 if(counter > 60){
-                    if(obj[random_int] != null){
-                        obj[random_int].draw(G2D,this);
+                    if(isBonusSet == false){
+                        aSetter.setBonusReward(); // makes and sets bonus reward at random possible location
+                        isBonusSet = true;
+                    }
+                    if(obj[18] != null){
+                        obj[18].draw(G2D,this);
                     }
                     counter --;
                 }
@@ -214,8 +217,8 @@ public class GameScreen extends JPanel implements Runnable {
                     counter --;
                 }
                 else{
+                    isBonusSet = false; //for resetting a new bonus reward
                     counter = 480; //Reset counter
-                    random_int = (int)Math.floor(Math.random()*(5)+18); //Re-choose another Bonus Reward
                 }
         
                 // Draws the enemies
@@ -261,18 +264,22 @@ public class GameScreen extends JPanel implements Runnable {
                 setupGame();
                 
                  // Draws the objects (except Bonus Rewards)
-                 for(int i = 0; i < obj.length-6; i++){
+                 for(int i = 0; i < obj.length-2; i++){
                     if(obj[i] != null){
                         obj[i].draw(G2D,this);
                     }
                 }
                 //draw exit
-                obj[23].draw(G2D,this);
+                obj[19].draw(G2D,this);
 
                 //Draws Bonus at random
                 if(counter > 60){
-                    if(obj[random_int] != null){
-                        obj[random_int].draw(G2D,this);
+                    if(isBonusSet == false){
+                        aSetter.setBonusReward();
+                        isBonusSet = true;
+                    }
+                    if(obj[18] != null){
+                        obj[18].draw(G2D,this);
                     }
                     counter --;
                 }
@@ -280,8 +287,8 @@ public class GameScreen extends JPanel implements Runnable {
                     counter --;
                 }
                 else{
+                    isBonusSet = false; //for resetting a new bonus reward
                     counter = 480; //Reset counter
-                    random_int = (int)Math.floor(Math.random()*(5)+18); //Re-choose another Bonus Reward
                 }
         
                 // Draws the enemies
