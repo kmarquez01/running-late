@@ -71,6 +71,8 @@ public class Player extends Character {
 
     public void move() {
 
+        screen.collisionHandler.checkEnemy(this, true);
+
         if (enemyCollision) {
             
             /*try {
@@ -80,6 +82,7 @@ public class Player extends Character {
                 Thread.currentThread().interrupt();
             }
             */
+
             GameState.gameState = GameState.GAMEOVER;
            
 
