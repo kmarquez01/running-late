@@ -16,8 +16,8 @@ public class Stopwatch {
 
     Timer timer;
     String timeLabel;
-    int sec;
-    int min;
+    public int sec;
+    public int min;
     String strSec;
     String strMin;
     DecimalFormat dFormat = new DecimalFormat("00");
