@@ -4,11 +4,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import game.states.GameState;
+import game.sound.Sound;
 
 
 
 public class MouseInput implements MouseListener{
 
+    Sound effects = new Sound(); // for playing sound effects when buttons pressed
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
@@ -46,6 +48,8 @@ public class MouseInput implements MouseListener{
         {
             if(mousey >= 375 && mousey <= 405)
             {
+                effects.setFile(5);
+                effects.play();
                 GameState.gameState = GameState.PLAYING;
             }
         }
