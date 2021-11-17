@@ -86,29 +86,43 @@ public class ObjectSetter {
         gs.obj[17].worldX = 16 * gs.tileSize;
         gs.obj[17].worldY = 4 * gs.tileSize;
 
-        // Bonus Rewards
-        gs.obj[18] = new BonusReward();
-        gs.obj[18].worldX = 9 * gs.tileSize;
-        gs.obj[18].worldY = 2 * gs.tileSize;
+        gs.obj[19] = new Exit();
 
-        gs.obj[19] = new BonusReward();
-        gs.obj[19].worldX = 1 * gs.tileSize;
-        gs.obj[19].worldY = 14 * gs.tileSize;
+    }
 
-        gs.obj[20] = new BonusReward();
-        gs.obj[20].worldX = 7 * gs.tileSize;
-        gs.obj[20].worldY = 18 * gs.tileSize;
+    public void setBonusReward(){
 
-        gs.obj[21] = new BonusReward();
-        gs.obj[21].worldX = 23 * gs.tileSize;
-        gs.obj[21].worldY = 8 * gs.tileSize;
+        int x = (int)Math.floor(Math.random()*(28)+1); // gets random x,y coords
+        int y = (int)Math.floor(Math.random()*(18)+1);
 
-        gs.obj[22] = new BonusReward();
-        gs.obj[22].worldX = 22 * gs.tileSize;
-        gs.obj[22].worldY = 18 * gs.tileSize;
+        boolean tileAvailable = false; //checks if tile is available (not a wall or already has an object)
 
-        gs.obj[23] = new Exit();
+        int isWallTile; // checks if tile is a wall
+        boolean isObjectTile = false; //checks if tile already contains an object
 
+        while(tileAvailable == false){ //loops until chosen tile is plausible
+            isWallTile = gs.tileManager.MapTileNum[x][y];
+            if(!gs.tileManager.tile[isWallTile].collision){
+                for(int i=0; i<gs.obj.length-2; i++){
+                    // checks if reward is already on tile
+                    if( (gs.obj[i].worldX == x * gs.tileSize) && (gs.obj[i].worldY == y * gs.tileSize) ){
+                        isObjectTile = true;
+                    }
+                }
+                if(!isObjectTile){
+                    tileAvailable = true;
+                }
+                else{
+                    y = (int)Math.floor(Math.random()*(18)+1);
+                }
+            }
+            else{
+                y = (int)Math.floor(Math.random()*(18)+1);
+            }
+        }
 
+        gs.obj[18] = new BonusReward(); // sets bonus reward at random generated x,y coords
+        gs.obj[18].worldX = x * gs.tileSize;
+        gs.obj[18].worldY = y * gs.tileSize;
     }
 }
