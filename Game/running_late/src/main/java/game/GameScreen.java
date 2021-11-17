@@ -177,6 +177,8 @@ public class GameScreen extends JPanel implements Runnable {
                     playMusic(0);
                     musicFlag = 1;
                 }
+                score.currentScore = 0;
+                player.enemyCollision = false;
                 titleScreenPanel.draw(G2D);
                 break;
 
@@ -256,7 +258,8 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case RESTART:
-            
+
+                player.enemyCollision = false;
                 player.position = new Point(100,100);
 
                 setupGame();
