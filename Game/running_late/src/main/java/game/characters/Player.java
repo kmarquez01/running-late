@@ -278,4 +278,12 @@ public class Player extends Character {
         return (new int[]{position.x, position.y});
     }
 
+    public void resetInputs(){
+        input.up = false;
+        input.down = false;
+        input.left = false;
+        input.right = false;
+        input.esc = false;
+    }
+
 }
