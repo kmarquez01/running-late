@@ -84,5 +84,11 @@ public class Stopwatch {
         }
         );
     }
+
+    public void resetClock(){
+        sec = 0;
+        min = 0;
+        timeLabel = "00:00";
+    }
 }
 
