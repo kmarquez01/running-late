@@ -285,4 +285,9 @@ public class Player extends Character {
         input.esc = false;
     }
 
+    public void resetStats(){
+        enemyCollision = false;
+        numRewardsCollected = 0;
+    }
+
 }
