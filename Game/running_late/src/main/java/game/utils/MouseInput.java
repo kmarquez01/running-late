@@ -73,7 +73,7 @@ public class MouseInput implements MouseListener{
         
     }
 
-    if(GameState.gameState == GameState.GAMEOVER || GameState.gameState == GameState.GAMEWIN){
+    if(GameState.gameState == GameState.GAMEWIN){  //|| GameState.gameState == GameState.GAMEOVER){
 
         if(mousex >= 1100 && mousex <= 1275)
         {
@@ -93,6 +93,29 @@ public class MouseInput implements MouseListener{
             }
         }
     }
+
+        if(GameState.gameState == GameState.GAMEOVER){  //|| GameState.gameState == GameState.GAMEOVER){
+
+            if(mousex >= 1100 && mousex <= 1275)
+            {
+                if(mousey >= 825 && mousey <= 860)
+                {
+
+                    GameState.gameState = GameState.MENU;
+                }
+            }
+
+            if(mousex >= 125 && mousex <= 275 )
+            {
+                if(mousey >= 820 && mousey <= 875)
+                {
+
+                    GameState.gameState = GameState.RESTART;
+                }
+            }
+        }
+
+
 
 
         /*
