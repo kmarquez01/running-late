@@ -307,8 +307,7 @@ public class GameScreen extends JPanel implements Runnable {
                 score.draw(G2D);
 
                 // Draws and resets the timer
-                timeLabel.sec = 0;
-                timeLabel.min = 0;
+                timeLabel.resetClock();
                 timeLabel.draw(G2D);
         
                
