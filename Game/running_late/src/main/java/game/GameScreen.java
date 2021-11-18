@@ -245,6 +245,7 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case PAUSED:
+                player.resetInputs();
                 if(musicFlag != 3){ // plays Pause screen effect
                     stopSound();
                     playEffects(4);
@@ -259,6 +260,7 @@ public class GameScreen extends JPanel implements Runnable {
 
             case RESTART:
 
+                player.resetInputs();
                 player.enemyCollision = false;
                 player.position = new Point(100,100);
 
