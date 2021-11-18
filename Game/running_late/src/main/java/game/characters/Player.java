@@ -4,7 +4,6 @@ import game.GameScreen;
 import game.objects.Reward;
 import game.states.GameState;
 import game.stats.Score;
-import game.stats.Stopwatch;
 import game.utils.KeyHandler;
 
 import javax.imageio.ImageIO;
@@ -13,7 +12,9 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
+/**
+ * The class that represents the player
+ */
 public class Player extends Character {
 
     private GameScreen screen;
@@ -23,7 +24,14 @@ public class Player extends Character {
     public boolean enemyCollision = false;
     int numRewardsCollected = 0;
 
-
+    /**
+     * Constructor
+     * @param screen - the game screen
+     * @param input - the key handler
+     * @param score - the score
+     * @param x - where on the x-axis we want to create the player
+     * @param y - where on the y-axis we want to create the player
+     */
     public Player (GameScreen screen, KeyHandler input, Score score, int x, int y) {
 
         position = new Point(x,y);
@@ -46,11 +54,17 @@ public class Player extends Character {
         direction = "down";
     }
 
+    /**
+     * Sets all the default values
+     */
     public void setDefaultValues() {
         worldX = screen.tileSize * 23;
         worldY = screen.tileSize * 21;
     }
 
+    /**
+     * Sets all the player sprites
+     */
     public void setPlayerImage(){
         try {
             up1 = ImageIO.read( (new FileInputStream ("resources/player/idleup.png") ) );
@@ -69,38 +83,19 @@ public class Player extends Character {
         }
     }
 
+    /**
+     * Takes in key inputs and moves the player accordingly
+     */
     public void move() {
 
-        screen.collisionHandler.checkEnemy(this, true);
+        screen.collisionHandler.checkEnemy(this);
 
         if (enemyCollision) {
-            
-            /*try {
-                Thread.sleep(500);
-            }
-            catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            */
-
             GameState.gameState = GameState.GAMEOVER;
-           
-
-        
         }
 
         if (score.getScoreNum() < 0){
-            
-            /*
-            try {
-                Thread.sleep(500);
-            }
-            catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            */
             GameState.gameState = GameState.GAMEOVER;
-
         }
 
         if (hurt) {
@@ -139,13 +134,13 @@ public class Player extends Character {
                 screen.collisionHandler.checkTile(this);
 
                 // check for enemy collision
-                screen.collisionHandler.checkEnemy(this, true);
+                screen.collisionHandler.checkEnemy(this);
 
                 // check object collision
                 // basically objectIndex is by default set to 999
                 // if you are touching an object, then objectIndex becomes its index
                 // you then pick it up in the next call (if its 999 u dont pick up anything)
-                int objectIndex = screen.collisionHandler.checkObject(this, true);
+                int objectIndex = screen.collisionHandler.checkReward(this);
                 pickUpObject(objectIndex);
 
                 // if there is no collision, move:
@@ -183,6 +178,10 @@ public class Player extends Character {
 
     }
 
+    /**
+     * If the player collided with a reward, pick up that reward
+     * @param i - the reward to pick up
+     */
     public void pickUpObject(int i){
         if ( i != 999){
             if (screen.obj[i].isExit) {
@@ -215,10 +214,10 @@ public class Player extends Character {
         }
     }
 
-
-//    //getter for numRewardsCollected variable for GameScreen to access
-//    public int getNumRewards(){ return numRewardsCollected; }
-
+    /**
+     * Responsible for drawing the player onto the screen
+     * @param G2D - graphics
+     */
     public void draw(Graphics2D G2D){
 
         BufferedImage sprite = null;

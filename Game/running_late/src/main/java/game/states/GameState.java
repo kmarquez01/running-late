@@ -1,5 +1,8 @@
 package game.states;
 
+/**
+ * Holds all the different states of the game
+ */
 public enum GameState {
 
     MENU,

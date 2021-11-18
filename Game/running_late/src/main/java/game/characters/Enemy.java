@@ -10,13 +10,23 @@ import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * The class that represents enemies
+ */
 public class Enemy extends Character {
 
     private GameScreen screen;
     private KeyHandler input;
     private Player player;
 
-    public Enemy(GameScreen screen, KeyHandler input, int x, int y, Player player) {
+    /**
+     * Creates the enemy
+     * @param screen - the game screen
+     * @param x - where on the x-axis we want to create the player
+     * @param y - where on the y-axis we want to create the player
+     * @param player - the player character
+     */
+    public Enemy(GameScreen screen, int x, int y, Player player) {
 
         position = new Point(x,y);
         speed = 2;
@@ -38,11 +48,17 @@ public class Enemy extends Character {
         direction = "down";
     }
 
+    /**
+     * Sets all the default values
+     */
     public void setDefaultValues() {
         worldX = screen.tileSize * 23;
         worldY = screen.tileSize * 21;
     }
 
+    /**
+     * Sets the enemies' sprites
+     */
     public void setEnemyImage(){
         try {
             up1 = ImageIO.read( (new FileInputStream("resources/enemy/MovEn_idleup.png") ) );
@@ -61,6 +77,9 @@ public class Enemy extends Character {
         }
     }
 
+    /**
+     * Moves the enemy closer to the player character
+     */
     public void move() {
 
         if(GameState.gameState == GameState.PLAYING) {
@@ -144,6 +163,10 @@ public class Enemy extends Character {
         }
     }
 
+    /**
+     * Responsible for drawing the enemy on screen
+     * @param G2D - graphics
+     */
     public void draw(Graphics2D G2D) {
         BufferedImage sprite = null;
 

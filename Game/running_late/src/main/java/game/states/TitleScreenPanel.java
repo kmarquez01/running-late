@@ -7,9 +7,9 @@ import game.GameScreen;
 
 import javax.imageio.ImageIO;
 
-
-
-
+/**
+ * The menu screen
+ */
 public class TitleScreenPanel{
 
     Color myGreen = new Color(189, 221, 114);
@@ -28,8 +28,10 @@ public class TitleScreenPanel{
 
     int spacing = 90;
 
-   
-
+    /**
+     * Draws the title screen onto the game screen
+     * @param g - graphics
+     */
     public void draw(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -45,6 +47,9 @@ public class TitleScreenPanel{
 
     }
 
+    /**
+     * Gets the Title Image
+     */
     public void getImage(){
 
         try {

@@ -4,6 +4,9 @@ import game.GameScreen;
 import game.characters.Enemy;
 import game.characters.Player;
 
+/**
+ * Responsible for handling all collisions in game
+ */
 public class CollisionHandler {
 
     GameScreen screen;
@@ -12,6 +15,10 @@ public class CollisionHandler {
         this.screen = screen;
     }
 
+    /**
+     * This method checks for collisions between tiles and the player
+     * @param entity - the player character
+     */
     public void checkTile(Player entity) {
 
         int entityLeftWorldX = entity.position.x + entity.solidArea.x;
@@ -58,6 +65,10 @@ public class CollisionHandler {
 
     }
 
+    /**
+     * This method checks for collisions between tiles and enemies
+     * @param entity - enemies
+     */
     public void checkTile(Enemy entity) {
 
         int entityLeftWorldX = entity.position.x + entity.solidArea.x;
@@ -104,7 +115,12 @@ public class CollisionHandler {
 
     }
 
-    public int checkObject(Player entity, boolean player){
+    /**
+     * This method checks for collisions between rewards and the player
+     * @param entity - the player character
+     * @return - the index of the reward the player collided with
+     */
+    public int checkReward(Player entity){
 
         int index = 999;
 
@@ -124,9 +140,7 @@ public class CollisionHandler {
                             if(screen.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if(player){
                                 index = i;
-                            }
                         }
                         break;
                     case "down":
@@ -135,9 +149,7 @@ public class CollisionHandler {
                             if(screen.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if(player){
                                 index = i;
-                            }
                         }
                         break;
                     case "left":
@@ -146,9 +158,7 @@ public class CollisionHandler {
                             if(screen.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if(player){
                                 index = i;
-                            }
                         }
                         break;
                     case "right":
@@ -157,9 +167,7 @@ public class CollisionHandler {
                             if(screen.obj[i].collision){
                                 entity.collisionOn = true;
                             }
-                            if (player){
                                 index = i;
-                            }
                         }
                         break;
 
@@ -174,13 +182,11 @@ public class CollisionHandler {
         return index;
     }
 
-    // add collision with enemy
-    public int checkEnemy(Player entity, boolean player) {
-
-        // if enemy collision, set player.enemyCollision = true;
-        // if enemy collision == true, move to game over state
-
-        int index = 999;
+    /**
+     * This method checks for collisions between enemy and player
+     * @param entity - the player character
+     */
+    public void checkEnemy(Player entity) {
 
         for( int i = 0; i < screen.enemy.length; i++){
             if( screen.enemy[i] != null){
@@ -199,9 +205,6 @@ public class CollisionHandler {
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
                                 entity.enemyCollision = true;
                                 entity.hurt = true;
-                            if(player){
-                                index = i;
-                            }
                         }
                         break;
                     case "down":
@@ -209,9 +212,6 @@ public class CollisionHandler {
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
                                 entity.enemyCollision = true;
                                 entity.hurt = true;
-                            if(player){
-                                index = i;
-                            }
                         }
                         break;
                     case "left":
@@ -219,9 +219,6 @@ public class CollisionHandler {
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
                                 entity.enemyCollision = true;
                                 entity.hurt = true;
-                            if(player){
-                                index = i;
-                            }
                         }
                         break;
                     case "right":
@@ -229,9 +226,6 @@ public class CollisionHandler {
                         if(entity.solidArea.intersects(screen.enemy[i].solidArea)){
                                 entity.enemyCollision = true;
                                 entity.hurt = true;
-                            if (player){
-                                index = i;
-                            }
                         }
                         break;
 
@@ -243,12 +237,6 @@ public class CollisionHandler {
             }
         }
 
-        return index;
-
     }
-
-
-
-
 
 }

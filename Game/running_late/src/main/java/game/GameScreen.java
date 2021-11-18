@@ -21,6 +21,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 
+/**
+ * Responsible for creating the game screen and game loop
+ */
 public class GameScreen extends JPanel implements Runnable {
 
     // These are for setting the size of the game window:
@@ -72,13 +75,15 @@ public class GameScreen extends JPanel implements Runnable {
     //Paused Menu
     public GamePauseMenu gamePauseMenu = new GamePauseMenu(this);
 
+    // Game Over Menu
     public GameOverMenu gameOverMenu = new GameOverMenu(this);
 
+    // Victory Menu
     public GameWinMenu gameWinMenu = new GameWinMenu(this);
 
-    
-
-    // Creates the game window
+    /**
+     * Creates the game window
+     */
     public GameScreen(){
 
         JFrame gameFrame = new JFrame("Running Late");
@@ -100,20 +105,26 @@ public class GameScreen extends JPanel implements Runnable {
 
     }
 
-    // sets up the game's objects
+    /**
+     * Sets up the game's objects and enemies
+     */
     public void setupGame(){
         aSetter.setObject();
         eSetter.setEnemy();
     }
 
-    // Starts the game
+    /**
+     * Starts the Game
+     */
     public void startGameThread () {
         gameThread = new Thread(this);
         gameThread.start();
     }
 
-    // Runs the game
-    // Is responsible for the gameloop (frame rate basically)
+    /**
+     * Runs the game
+     * This method is responsible for the GameLoop
+     */
     @Override
     public void run () {
 
@@ -142,7 +153,9 @@ public class GameScreen extends JPanel implements Runnable {
         }
     }
 
-    // everything that can change with each frame goes here:
+    /**
+     * Everything that can change with each frame goes here:
+     */
     private void refresh() {
 
        
@@ -159,12 +172,18 @@ public class GameScreen extends JPanel implements Runnable {
           
     }
 
-    // This is called everytime repaint() is called
-    // It's responsible for displaying everything to the screen
-    // So every graphic must go here
-    int counter = 480; //For drawing Bonus Rewards at random spots and staying for a specific time
-    boolean isBonusSet = false; //checks if bonus reward has been set in ObjectSetter
-    int musicFlag = 0; //Makes sure appropriate music is being played during each state
+    //For drawing Bonus Rewards at random spots and staying for a specific time
+    int counter = 480;
+    //checks if bonus reward has been set in ObjectSetter
+    boolean isBonusSet = false;
+    //Makes sure appropriate music is being played during each state
+    int musicFlag = 0;
+
+    /**
+     * This is called everytime repaint() is called
+     * It's responsible for drawing all the garphics
+     * @param graphic - the graphics
+     */
     public void paintComponent(Graphics graphic) {
 
         super.paintComponent(graphic);

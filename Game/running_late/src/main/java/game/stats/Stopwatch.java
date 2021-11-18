@@ -11,7 +11,9 @@ import game.states.GameState;
 
 import java.text.DecimalFormat;
 
-
+/**
+ * Responsible for displaying the timer at the top of the screen
+ */
 public class Stopwatch {
 
     Timer timer;
@@ -22,7 +24,9 @@ public class Stopwatch {
     String strMin;
     DecimalFormat dFormat = new DecimalFormat("00");
 
-
+    /**
+     * Stopwatch constructor
+     */
     public Stopwatch() {
         sec = 0;
         min = 0;
@@ -31,6 +35,10 @@ public class Stopwatch {
         timer.stop();
     }
 
+    /**
+     * Draws the stopwatch on the screen
+     * @param graphic - graphics
+     */
     public void draw(Graphics2D graphic){
 
         if(GameState.gameState != GameState.GAMEOVER){
@@ -57,14 +65,23 @@ public class Stopwatch {
 
     }
 
+    /**
+     * Stops the timer
+     */
     public void stopTimer(){
         timer.stop();
     }
 
+    /**
+     * Starts the timer
+     */
     public void startTimer(){
         timer.start();
     }
 
+    /**
+     * Increments the stop watch every second
+     */
     public void stopwatch() {
         timer = new Timer(1000, new ActionListener() {
             @Override
@@ -85,6 +102,9 @@ public class Stopwatch {
         );
     }
 
+    /**
+     * Resets the stop watch (for every new game)
+     */
     public void resetClock(){
         sec = 0;
         min = 0;
