@@ -193,7 +193,7 @@ public class GameScreen extends JPanel implements Runnable {
             case MENU:
 
                 score.currentScore = 0;
-                player.enemyCollision = false;
+                player.resetStats();
                 if(musicFlag != 1){ // plays Main Menu music
                     playMusic(0);
                     musicFlag = 1;
@@ -280,7 +280,7 @@ public class GameScreen extends JPanel implements Runnable {
             case RESTART:
 
                 player.resetInputs();
-                player.enemyCollision = false;
+                player.resetStats();
                 player.position = new Point(100,100);
 
                 setupGame();
