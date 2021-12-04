@@ -249,10 +249,6 @@ public class GameStateTest
 
         GameState.gameState = GameState.MENU;
 
-        Stopwatch timer = new Stopwatch();
-
-        Score score = new Score();
-
         assertEquals(score.currentScore, 0);
 
         System.out.println("MENU state test succeeded");
