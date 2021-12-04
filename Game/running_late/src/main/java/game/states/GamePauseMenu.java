@@ -7,9 +7,9 @@ import game.GameScreen;
 
 import javax.imageio.ImageIO;
 
-
-
-
+/**
+ * The Pause Screen
+ */
 public class GamePauseMenu{
 
     Color myGreen = new Color(189, 221, 114);
@@ -29,8 +29,10 @@ public class GamePauseMenu{
 
     int spacing = 90;
 
-   
-
+    /**
+     * Draws the pause screen onto the game screen
+     * @param g - graphics
+     */
     public void draw(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -48,6 +50,9 @@ public class GamePauseMenu{
 
     }
 
+    /**
+     * Gets the Pause Title
+     */
     public void getImage(){
 
         try {

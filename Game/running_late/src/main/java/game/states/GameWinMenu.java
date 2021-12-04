@@ -8,6 +8,9 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * The Victory Screen
+ */
 public class GameWinMenu {
 
     Color myGreen = new Color(189, 221, 114);
@@ -26,6 +29,10 @@ public class GameWinMenu {
 
     int spacing = 90;
 
+    /**
+     * Draws the victory screen onto the game screen
+     * @param g - graphics
+     */
     public void draw(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -43,6 +50,9 @@ public class GameWinMenu {
 
     }
 
+    /**
+     * Gets the Victory title
+     */
     public void getImage(){
 
         try {

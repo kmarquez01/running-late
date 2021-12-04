@@ -14,18 +14,7 @@ public class EnemySetter {
     }
 
     public void setEnemy(){
-
-        gs.enemy[0] = new Enemy(gs, gs.input, 50, 800, player);
-        gs.enemy[1] = new Enemy(gs, gs.input, 900, 50, player);
-//        gs.obj[0].worldX = 5 * gs.tileSize;
-//        gs.obj[0].worldY = 5 * gs.tileSize;
-//
-//        gs.obj[1] = new Reward();
-//        gs.obj[1].worldX = 3 * gs.tileSize;
-//        gs.obj[1].worldY = 3 * gs.tileSize;
-//
-//        gs.obj[2] = new Punishment();
-//        gs.obj[2].worldX = 7 * gs.tileSize;
-//        gs.obj[2].worldY = 3 * gs.tileSize;
+        gs.enemy[0] = new Enemy(gs,  50, 800, player);
+        gs.enemy[1] = new Enemy(gs,900, 50, player);
     }
 }

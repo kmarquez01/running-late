@@ -4,6 +4,9 @@ import java.awt.*;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Blueprint for all characters in the game
+ */
 public class Character {
 
     // the character's animation sprites
@@ -23,22 +26,13 @@ public class Character {
     // the character's speed
     public int speed;
 
+    // For sprites and drawing:
     int spriteCounter = 0;
     int spriteNum = 1;
 
+    // For collisions:
     public Rectangle solidArea;
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
 
-
-
-/*    public boolean checkWall(int currX, int currY) {
-        int newX = (currX - Board.X_OFFSET) / Board.TILE_SIZE;
-        int newY = (currY - Board.Y_OFFSET) / Board.TILE_SIZE;
-
-        if (newX < 0 || newY < 0 || newX >= Board.COLUMNS || newY >= Board.ROWS) {
-            return false;
-        }
-        return Board.Boardstatus[newY][newX] != 4;
-    }*/
 }

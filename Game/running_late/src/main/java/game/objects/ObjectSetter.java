@@ -2,14 +2,24 @@ package game.objects;
 
 import game.GameScreen;
 
+/**
+ * Responsible for creating all the objects on the game screen
+ */
 public class ObjectSetter {
 
     GameScreen gs;
 
+    /**
+     * Constructor
+     * @param gs - the game screen
+     */
     public ObjectSetter(GameScreen gs){
         this.gs = gs;
     }
 
+    /**
+     * Creates all the rewards
+     */
     public void setObject(){
 
         // Rewards
@@ -90,6 +100,9 @@ public class ObjectSetter {
 
     }
 
+    /**
+     * Creates all the bonus rewards
+     */
     public void setBonusReward(){
 
         int x = (int)Math.floor(Math.random()*(28)+1); // gets random x,y coords

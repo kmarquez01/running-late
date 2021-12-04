@@ -7,14 +7,15 @@ import game.states.GameState;
 import game.sound.Sound;
 
 
-
+/**
+ * Responsible for handling all mouse inputs and events
+ */
 public class MouseInput implements MouseListener{
 
     Sound effects = new Sound(); // for playing sound effects when buttons pressed
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
-        
     }
 
     @Override

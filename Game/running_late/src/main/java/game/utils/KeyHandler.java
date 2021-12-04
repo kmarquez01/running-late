@@ -5,6 +5,9 @@ import java.awt.event.KeyListener;
 
 import game.states.GameState;
 
+/**
+ * Responsible for handling all key inputs and events
+ */
 public class KeyHandler implements KeyListener {
 
     public boolean up, down, left, right, esc;

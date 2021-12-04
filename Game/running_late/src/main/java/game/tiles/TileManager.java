@@ -6,6 +6,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * Responsible for drawing the tiles and managing the map layout
+ */
 public class TileManager {
 
     GameScreen screen;
@@ -16,16 +19,23 @@ public class TileManager {
     public Tiles[] tile;
     public int[][] MapTileNum;
 
-    public TileManager(GameScreen board){
-        this.screen = board;
-        this.gameCol = board.gameCol;
-        this.gameRow = board.gameRow;
+    /**
+     * Creates a maptile
+     * @param screen - the game screen
+     */
+    public TileManager(GameScreen screen){
+        this.screen = screen;
+        this.gameCol = screen.gameCol;
+        this.gameRow = screen.gameRow;
         tile = new Tiles[10];
-        MapTileNum = new int[screen.tileSize * gameCol][screen.tileSize * gameRow];
+        MapTileNum = new int[this.screen.tileSize * gameCol][this.screen.tileSize * gameRow];
         getTitleImage();
         loadMap();
     }
 
+    /**
+     * Sets the sprites of the tiles
+     */
     public void getTitleImage() {
         try{
             tile[0] = new Tiles();
@@ -50,6 +60,10 @@ public class TileManager {
         }
     }
 
+    /**
+     * Draws the tiles
+     * @param G2D - graphics
+     */
     public void draw(Graphics2D G2D){
 
         int col = 0;
@@ -74,8 +88,9 @@ public class TileManager {
         }
     }
 
-    // reads the map.txt
-    // 0 = wall, 1 = grass, 2 = water, 3 = tree
+    /**
+     * Reads schoolmap.txt and draws the tiles
+     */
     public void loadMap() {
         try {
             InputStream is = new FileInputStream("resources/tiles/schoolmap.txt");

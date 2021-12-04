@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * The class for the exit
+ */
 public class Exit extends Object{
 
     public Exit(){

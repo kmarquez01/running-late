@@ -4,6 +4,9 @@ import javax.imageio.ImageIO;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * The class for rewards
+ */
 public class Reward extends Object {
 
     public Reward(){

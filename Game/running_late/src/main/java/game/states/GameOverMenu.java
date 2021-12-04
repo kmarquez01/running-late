@@ -8,6 +8,9 @@ import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+/**
+ * The Game Over Screen
+ */
 public class GameOverMenu {
 
     Color myGreen = new Color(189, 221, 114);
@@ -16,9 +19,6 @@ public class GameOverMenu {
 
     public GameOverMenu(GameScreen board){
         getImage();
-//        public Score score = new Score();
-//        // Draws the score
-//        score.draw(G2D);
         return;
     }
 
@@ -31,8 +31,11 @@ public class GameOverMenu {
     int spacing = 90;
 
     public Score currentScore = new Score();
-    
 
+    /**
+     * Draws the game over screen onto the game screen
+     * @param g - graphics
+     */
     public void draw(Graphics g){
 
 
@@ -49,6 +52,9 @@ public class GameOverMenu {
 
     }
 
+    /**
+     * Gets the Game Over Image
+     */
     public void getImage(){
 
         try {
