@@ -90,6 +90,7 @@ public class Player extends Character {
 
         screen.collisionHandler.checkEnemy(this);
 
+
         if (enemyCollision) {
             GameState.gameState = GameState.GAMEOVER;
         }
@@ -175,6 +176,88 @@ public class Player extends Character {
                 spriteNum = 1;
             }
         }
+
+    }
+
+    /**
+     * For testing movement in the unit tests
+     * @param direction - the direction to move the player
+     */
+    public void moveDirection(String direction) {
+        screen.collisionHandler.checkEnemy(this);
+
+        if (enemyCollision) {
+            GameState.gameState = GameState.GAMEOVER;
+        }
+
+        if (score.getScoreNum() < 0){
+            GameState.gameState = GameState.GAMEOVER;
+        }
+
+        if (hurt) {
+            // wait 1/5 second
+            Thread imageLoadingThread = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(500);
+                        hurt = false;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    // end loop
+                }
+            });
+            imageLoadingThread.start();
+
+        }
+
+        if (!hurt) {
+
+                // check tile for collision
+                collisionOn = false;
+                screen.collisionHandler.checkTile(this);
+
+                // check for enemy collision
+                screen.collisionHandler.checkEnemy(this);
+
+                // check object collision
+                // basically objectIndex is by default set to 999
+                // if you are touching an object, then objectIndex becomes its index
+                // you then pick it up in the next call (if its 999 u dont pick up anything)
+                int objectIndex = screen.collisionHandler.checkReward(this);
+                pickUpObject(objectIndex);
+
+                // if there is no collision, move:
+                if (!collisionOn) {
+                    if (direction == "up") {
+                        position.y -= speed;
+                    } else if (direction == "down") {
+                        position.y += speed;
+                    } else if (direction == "left") {
+                        position.x -= speed;
+                    } else if (direction == "right") {
+                        position.x += speed;
+                    }
+                }
+
+                // for drawing the character moving:
+                spriteCounter++;
+                if (spriteCounter > 4) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 3;
+                    } else if (spriteNum == 3) {
+                        spriteNum = 4;
+                    } else if (spriteNum == 4) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
+
+            } else {
+                spriteNum = 1;
+            }
 
     }
 
