@@ -192,7 +192,9 @@ public class GameStateTest
        assertEquals(GameState.gameState, GameState.GAMEWIN);
 
 
+
     }
+
 
     @Test 
 
@@ -226,6 +228,7 @@ public class GameStateTest
     
     void statePlayingCheck(){
 
+
         game.collisionHandler.checkEnemy(player);
 
         GameState.gameState = GameState.PLAYING;
@@ -243,6 +246,18 @@ public class GameStateTest
 
     }
 
+    @Test
+
+    void statePausedCheck(){
+        GameState.gameState = GameState.PAUSED;
+
+        assertEquals(GameState.gameState, GameState.PAUSED);
+
+        assertTrue(score.currentScore == score.currentScore);
+
+        assertEquals(player.enemyCollision, false);
+    }
+
     @Test 
     
     void stateMenuCheck(){
@@ -256,6 +271,8 @@ public class GameStateTest
         assertEquals(timer.sec, 0);
  
         assertEquals(timer.min, 0);
+
+        assertEquals(GameState.gameState, GameState.MENU);
     }
 
     @Test
@@ -271,6 +288,8 @@ public class GameStateTest
         assertEquals(player.position, startpoint);
  
         System.out.println("Restart state test succeeded");
+
+        assertEquals(GameState.gameState, GameState.RESTART);
         
     }
 
@@ -278,6 +297,8 @@ public class GameStateTest
 
     void stateExitCheck(){
         GameState.gameState = GameState.EXIT;
+
+        assertEquals(GameState.gameState, GameState.EXIT);
 
     }
 

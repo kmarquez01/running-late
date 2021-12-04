@@ -12,10 +12,11 @@ import game.sound.Sound;
  */
 public class MouseInput implements MouseListener{
 
-    Sound effects = new Sound(); // for playing sound effects when buttons pressed
+    Sound effects; // = new Sound(); // for playing sound effects when buttons pressed
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO Auto-generated method stub
+        effects = new Sound();
     }
 
     @Override
