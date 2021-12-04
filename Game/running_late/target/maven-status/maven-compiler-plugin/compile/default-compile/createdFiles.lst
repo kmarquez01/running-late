@@ -4,10 +4,13 @@ game\stats\Stopwatch$1.class
 game\characters\Player.class
 game\objects\Object.class
 game\characters\Enemy.class
+game\sound\Sound.class
 game\utils\KeyHandler.class
+game\objects\Exit.class
 game\stats\Score.class
 game\objects\BonusReward.class
 game\states\GamePauseMenu.class
+game\states\GameWinMenu.class
 game\stats\Stopwatch.class
 game\states\TitleScreenPanel.class
 game\objects\Punishment.class
@@ -17,6 +20,7 @@ game\states\GameOverMenu.class
 game\utils\MouseInput.class
 game\utils\CollisionHandler.class
 game\objects\ObjectSetter.class
+game\characters\Player$2.class
 game\tiles\TileManager.class
 game\GameScreen.class
 game\states\GameState.class
