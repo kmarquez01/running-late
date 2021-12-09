@@ -23,89 +23,61 @@ public class ObjectSetter {
     public void setObject(){
 
         // Rewards
-        gs.obj[0] = new Reward();
-        gs.obj[0].worldX = 1 * gs.tileSize;
-        gs.obj[0].worldY = 4 * gs.tileSize;
-
-        gs.obj[1] = new Reward();
-        gs.obj[1].worldX = 3 * gs.tileSize;
-        gs.obj[1].worldY = 8 * gs.tileSize;
-
-        gs.obj[2] = new Reward();
-        gs.obj[2].worldX = 13 * gs.tileSize;
-        gs.obj[2].worldY = 7 * gs.tileSize;
-
-        gs.obj[3] = new Reward();
-        gs.obj[3].worldX = 21 * gs.tileSize;
-        gs.obj[3].worldY = 1 * gs.tileSize;
-
-        gs.obj[4] = new Reward();
-        gs.obj[4].worldX = 27 * gs.tileSize;
-        gs.obj[4].worldY = 4 * gs.tileSize;
-
-        gs.obj[5] = new Reward();
-        gs.obj[5].worldX = 11 * gs.tileSize;
-        gs.obj[5].worldY = 16 * gs.tileSize;
-
-        gs.obj[6] = new Reward();
-        gs.obj[6].worldX = 25 * gs.tileSize;
-        gs.obj[6].worldY = 16 * gs.tileSize;
+        makeNewReward(0, 1, 4);
+        makeNewReward(1, 3, 8);
+        makeNewReward(2, 13, 7);
+        makeNewReward(3, 21, 1);
+        makeNewReward(4, 27, 4);
+        makeNewReward(5, 11, 16);
+        makeNewReward(6, 25, 16);
 
         // Punishments
-        gs.obj[7] = new Punishment();
-        gs.obj[7].worldX = 19 * gs.tileSize;
-        gs.obj[7].worldY = 2 * gs.tileSize;
+        makeNewPunishment(7, 19, 2);
+        makeNewPunishment(8, 9, 6);
+        makeNewPunishment(9, 17, 9);
+        makeNewPunishment(10, 28, 15);
+        makeNewPunishment(11, 15, 15);
+        makeNewPunishment(12, 10, 12);
+        makeNewPunishment(13, 28, 8);
+        makeNewPunishment(14, 20, 15);
+        makeNewPunishment(15, 1, 11);
+        makeNewPunishment(16, 7, 16);
+        makeNewPunishment(17, 16, 4);
 
-        gs.obj[8] = new Punishment();
-        gs.obj[8].worldX = 9 * gs.tileSize;
-        gs.obj[8].worldY = 6 * gs.tileSize;
-
-        gs.obj[9] = new Punishment();
-        gs.obj[9].worldX = 17 * gs.tileSize;
-        gs.obj[9].worldY = 9 * gs.tileSize;
-
-        gs.obj[10] = new Punishment();
-        gs.obj[10].worldX = 28 * gs.tileSize;
-        gs.obj[10].worldY = 15 * gs.tileSize;
-
-        gs.obj[11] = new Punishment();
-        gs.obj[11].worldX = 15 * gs.tileSize;
-        gs.obj[11].worldY = 15 * gs.tileSize;
-
-        gs.obj[12] = new Punishment();
-        gs.obj[12].worldX = 10 * gs.tileSize;
-        gs.obj[12].worldY = 12 * gs.tileSize;
-
-        gs.obj[13] = new Punishment();
-        gs.obj[13].worldX = 28 * gs.tileSize;
-        gs.obj[13].worldY = 8 * gs.tileSize;
-
-        gs.obj[14] = new Punishment();
-        gs.obj[14].worldX = 20 * gs.tileSize;
-        gs.obj[14].worldY = 15 * gs.tileSize;
-
-        gs.obj[15] = new Punishment();
-        gs.obj[15].worldX = 1 * gs.tileSize;
-        gs.obj[15].worldY = 11 * gs.tileSize;
-
-        gs.obj[16] = new Punishment();
-        gs.obj[16].worldX = 7 * gs.tileSize;
-        gs.obj[16].worldY = 16 * gs.tileSize;
-
-        gs.obj[17] = new Punishment();
-        gs.obj[17].worldX = 16 * gs.tileSize;
-        gs.obj[17].worldY = 4 * gs.tileSize;
-
+        // Exit
         gs.obj[18] = new Exit();
+    }
 
+    public void makeNewReward(int index, int x, int y){
+        gs.obj[index] = new Reward();
+        setObjLocation(index, x, y);
+    }
+
+    public void makeNewPunishment(int index, int x, int y){
+        gs.obj[index] = new Punishment();
+        setObjLocation(index, x, y);
+    }
+
+    public void setObjLocation(int index, int x, int y){
+
+        gs.obj[index].worldX = x * gs.tileSize;
+        gs.obj[index].worldY = y * gs.tileSize;
     }
 
     /**
      * Creates all the bonus rewards
      */
-    public void setBonusReward(){
+    public void setBonusReward(){makeNewBonusReward(19);}
 
-        int x = (int)Math.floor(Math.random()*(28)+1); // gets random x,y coords
+    public void makeNewBonusReward(int index){
+        gs.obj[index] = new BonusReward();
+        int x = (int)Math.floor(Math.random()*(28)+1); // gets random x coord for BR
+        int y = getBonusRewardYCoord(x); // gets random y coord for BR based on x coord
+        setObjLocation(index, x, y);
+    }
+
+    public int getBonusRewardYCoord(int x){
+
         int y = (int)Math.floor(Math.random()*(18)+1);
 
         boolean tileAvailable = false; //checks if tile is available (not a wall or already has an object)
@@ -135,9 +107,6 @@ public class ObjectSetter {
                 y = (int)Math.floor(Math.random()*(18)+1);
             }
         }
-
-        gs.obj[19] = new BonusReward(); // sets bonus reward at random generated x,y coords
-        gs.obj[19].worldX = x * gs.tileSize;
-        gs.obj[19].worldY = y * gs.tileSize;
+        return y;
     }
 }
