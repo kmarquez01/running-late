@@ -172,12 +172,9 @@ public class GameScreen extends JPanel implements Runnable {
           
     }
 
-    //For drawing Bonus Rewards at random spots and staying for a specific time
-    int counter = 480;
-    //checks if bonus reward has been set in ObjectSetter
-    boolean isBonusSet = false;
-    //Makes sure appropriate music is being played during each state
-    int musicFlag = 0;
+    public int counter = 480; //For drawing Bonus Rewards at random spots and staying for a specific time
+    public boolean isBonusSet = false; //checks if bonus reward has been set in ObjectSetter
+    public int musicHandler = -1;  //Makes sure appropriate music is being played during each state
 
     /**
      * This is called everytime repaint() is called
@@ -194,61 +191,28 @@ public class GameScreen extends JPanel implements Runnable {
 
                 score.currentScore = 0;
                 player.resetStats();
-                if(musicFlag != 1){ // plays Main Menu music
-                    playMusic(0);
-                    musicFlag = 1;
-                }
+                soundPlayer(0,0);
                 titleScreenPanel.draw(G2D);
                 break;
 
             case PLAYING:
 
-                if(musicFlag != 2){ // plays in Game music
-                    stopSound();
-                    playMusic(1);
-                    musicFlag = 2;
-                }
+                soundPlayer(1,0);
                 // Draws the tiles
                 tileManager.draw(G2D);
                 timeLabel.startTimer();
 
-                
-        
                 // Draws the objects and exit (except Bonus Rewards)
-                for(int i = 0; i < obj.length-1; i++){
-                    if(obj[i] != null){
-                        obj[i].draw(G2D,this);
-                    }
-                }
+                drawObjects(G2D);
 
-                //Draws Bonus at random
-                if(counter > 60){
-                    if(isBonusSet == false){
-                        aSetter.setBonusReward(); // makes and sets bonus reward at random possible location
-                        isBonusSet = true;
-                    }
-                    if(obj[19] != null){
-                        obj[19].draw(G2D,this);
-                    }
-                    counter --;
-                }
-                else if(counter <= 60 && counter > 0){
-                    counter --;
-                }
-                else{
-                    isBonusSet = false; //for resetting a new bonus reward
-                    counter = 480; //Reset counter
-                }
-        
-                // Draws the enemies
-                for(int i = 0; i < enemy.length; i++){
-                    if(enemy[i] != null){
-                        enemy[i].draw(G2D);
-                    }
-                }
+                //For making bonus reward appear/disappear at a certain amount of time
+                drawBonusReward(G2D);
         
                 // Draws the player
                 player.draw(G2D);
+
+                // Draws the enemies
+                drawEnemies(G2D);
         
                 // Draws the score
                 score.draw(G2D);
@@ -265,11 +229,7 @@ public class GameScreen extends JPanel implements Runnable {
 
             case PAUSED:
                 player.resetInputs();
-                if(musicFlag != 3){ // plays Pause screen effect
-                    stopSound();
-                    playEffects(4);
-                    musicFlag = 3;
-                }
+                soundPlayer(4,1);
                 gamePauseMenu.draw(G2D);
                 score.draw(G2D);
                 timeLabel.stopTimer();
@@ -286,37 +246,14 @@ public class GameScreen extends JPanel implements Runnable {
                 setupGame();
                 
                  // Draws the objects and exit (except Bonus Rewards)
-                 for(int i = 0; i < obj.length-1; i++){
-                    if(obj[i] != null){
-                        obj[i].draw(G2D,this);
-                    }
-                }
+                drawObjects(G2D);
 
-                //Draws Bonus at random
-                if(counter > 60){
-                    if(isBonusSet == false){
-                        aSetter.setBonusReward();
-                        isBonusSet = true;
-                    }
-                    if(obj[19] != null){
-                        obj[19].draw(G2D,this);
-                    }
-                    counter --;
-                }
-                else if(counter <= 60 && counter > 0){
-                    counter --;
-                }
-                else{
-                    isBonusSet = false; //for resetting a new bonus reward
-                    counter = 480; //Reset counter
-                }
+                counter = 0; // For resetting counter on next drawBonusReward call
+                //For making bonus reward appear/disappear at a certain amount of time
+                drawBonusReward(G2D);
         
                 // Draws the enemies
-                for(int i = 0; i < enemy.length; i++){
-                    if(enemy[i] != null){
-                        enemy[i].draw(G2D);
-                    }
-                }
+                drawEnemies(G2D);
         
                 // Draws the player
                 player.draw(G2D);
@@ -329,18 +266,12 @@ public class GameScreen extends JPanel implements Runnable {
                 timeLabel.resetClock();
                 timeLabel.draw(G2D);
         
-               
-        
                 GameState.gameState = GameState.PLAYING;
        
                 break;
 
             case GAMEOVER:
-                if(musicFlag != 4){ // plays Game Over effect
-                    stopSound();
-                    playEffects(7);
-                    musicFlag = 4;
-                }
+                soundPlayer(7,1);
                 gameOverMenu.draw(G2D);
                 player.position = new Point(100,100);
                 setupGame();
@@ -354,11 +285,7 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case GAMEWIN:
-                if(musicFlag != 5){ // plays Game Win effect
-                    stopSound();
-                    playEffects(8);
-                    musicFlag = 5;
-                }
+                soundPlayer(8,1);
                 gameWinMenu.draw(G2D);
                 score.draw(G2D);
                 timeLabel.stopTimer();
@@ -366,6 +293,61 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
         }
 
+    }
+
+    // For drawing all objects in array
+    public void drawObjects(Graphics2D G2D){
+        for(int i = 0; i < obj.length-1; i++){
+            if(obj[i] != null){
+                obj[i].draw(G2D,this);
+            }
+        }
+    }
+
+    // For drawing all enemies in array
+    public void drawEnemies(Graphics2D G2D){
+        for(int i = 0; i < enemy.length; i++){
+            if(enemy[i] != null){
+                enemy[i].draw(G2D);
+            }
+        }
+    }
+
+    // For drawing bonus reward (when to appear/ disappear)
+    public void drawBonusReward(Graphics2D G2D){
+
+        if(counter > 60){
+            if(isBonusSet == false){
+                aSetter.setBonusReward();
+                isBonusSet = true;
+            }
+            if(obj[19] != null){
+                obj[19].draw(G2D,this);
+            }
+            counter --;
+        }
+        else if(counter <= 60 && counter > 0){
+            obj[19] = null;
+            counter --;
+        }
+        else{
+            isBonusSet = false; //for resetting a new bonus reward
+            counter = 480; //Reset counter
+        }
+    }
+
+    // For handling which sounds should be playing at a given state
+    public void soundPlayer(int soundIndex, int soundChooser){
+        if(musicHandler != soundIndex){
+            if(music.clip != null){stopSound();}
+            if(soundChooser == 0){ // 0 means it wants to play music
+                playMusic(soundIndex);
+            }
+            else{ // !0 means it wants to play effects
+                playEffects(soundIndex);
+            }
+            musicHandler = soundIndex;
+        }
     }
 
     //Responsible for playing all music and sound effects for the game
