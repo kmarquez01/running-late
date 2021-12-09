@@ -10,7 +10,7 @@ import java.io.File;
  */
 public class Sound {
 
-    Clip clip;
+    public Clip clip;
     File soundURL[] = new File[9];
 
     /**
