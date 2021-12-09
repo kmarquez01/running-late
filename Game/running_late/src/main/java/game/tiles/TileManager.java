@@ -45,7 +45,7 @@ public class TileManager {
             tile[1] = new Tiles();
             tile[1].image = ImageIO.read( (new FileInputStream("resources/tiles/FloorTile.png") ) );
 
-            tile[2] = new Tiles();
+            /*tile[2] = new Tiles();
             tile[2].image = ImageIO.read( (new FileInputStream("resources/tiles/water.png") ) );
 
             tile[3] = new Tiles();
@@ -53,7 +53,7 @@ public class TileManager {
 
             tile[4] = new Tiles();
             tile[4].image = ImageIO.read( (new FileInputStream("resources/tiles/sand.png") ) );
-            tile[4].reward = true;
+            tile[4].reward = true;*/
         }
         catch (IOException e){
             e.printStackTrace();
