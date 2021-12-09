@@ -207,9 +207,6 @@ public class GameScreen extends JPanel implements Runnable {
 
                 //For making bonus reward appear/disappear at a certain amount of time
                 drawBonusReward(G2D);
-        
-                // Draws the player
-                player.draw(G2D);
 
                 // Draws the enemies
                 drawEnemies(G2D);
@@ -219,6 +216,9 @@ public class GameScreen extends JPanel implements Runnable {
 
                 // Draws the timer
                 timeLabel.draw(G2D);
+
+                // Draws the player
+                player.draw(G2D);
         
                 G2D.dispose();
                 break;
