@@ -19,6 +19,8 @@ public class MouseInput implements MouseListener{
 
     if(GameState.gameState == GameState.MENU){
 
+        //Checking if the button "Start Game" is Clicked
+
         if(mousex >= 600 && mousex <= 800)
         {
             if(mousey >= 375 && mousey <= 405)
@@ -26,6 +28,8 @@ public class MouseInput implements MouseListener{
                 GameState.gameState = GameState.RESTART;
             }
         }
+
+        //Checking if the button "Exit" is Clicked
 
         if(mousex >= 660 && mousex <= 735)
         {
@@ -38,6 +42,8 @@ public class MouseInput implements MouseListener{
 
     if(GameState.gameState == GameState.PAUSED){
 
+        //Checking if the button "Resume" is Clicked
+
         if(mousex >= 600 && mousex <= 800)
         {
             if(mousey >= 375 && mousey <= 405)
@@ -48,6 +54,8 @@ public class MouseInput implements MouseListener{
             }
         }
 
+        //Checking if the button "Restart" is Clicked
+
         if(mousex >= 660 && mousex <= 790)
         {
             if(mousey >= 500 && mousey <= 530)
@@ -55,6 +63,8 @@ public class MouseInput implements MouseListener{
                 GameState.gameState = GameState.RESTART;
             }
         }
+
+        //Checking if the button " <- Back " is Clicked
 
         if(mousex >= 75 && mousex <= 275 )
         {
@@ -69,6 +79,8 @@ public class MouseInput implements MouseListener{
 
     if(GameState.gameState == GameState.GAMEWIN){  
 
+        //Checking if the button "Main Menu" is Clicked
+
         if(mousex >= 1100 && mousex <= 1275)
         {
             if(mousey >= 825 && mousey <= 860)
@@ -77,6 +89,8 @@ public class MouseInput implements MouseListener{
                 GameState.gameState = GameState.MENU;
             }
         }
+
+        //Checking if the button "New Game" is Clicked
         
         if(mousex >= 125 && mousex <= 275 )
         {
@@ -88,7 +102,9 @@ public class MouseInput implements MouseListener{
         }
     }
 
-        if(GameState.gameState == GameState.GAMEOVER){  
+        if(GameState.gameState == GameState.GAMEOVER){ 
+            
+            //Checking if the button "Main Menu" is Clicked
 
             if(mousex >= 1100 && mousex <= 1275)
             {
@@ -98,6 +114,8 @@ public class MouseInput implements MouseListener{
                     GameState.gameState = GameState.MENU;
                 }
             }
+
+            //Checking if the button "New Game" is Clicked
 
             if(mousex >= 125 && mousex <= 275 )
             {
