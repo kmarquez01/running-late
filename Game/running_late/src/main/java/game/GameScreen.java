@@ -210,15 +210,15 @@ public class GameScreen extends JPanel implements Runnable {
 
                 // Draws the enemies
                 drawEnemies(G2D);
-        
+
+                // Draws the player
+                player.draw(G2D);
+
                 // Draws the score
                 score.draw(G2D);
 
                 // Draws the timer
                 timeLabel.draw(G2D);
-
-                // Draws the player
-                player.draw(G2D);
         
                 G2D.dispose();
                 break;
