@@ -241,27 +241,12 @@ public class GameScreen extends JPanel implements Runnable {
                 player.position = new Point(100,100);
 
                 setupGame();
-                
-                 // Draws the objects and exit (except Bonus Rewards)
-                drawObjects(G2D);
-
-                counter = 0; // For resetting counter on next drawBonusReward call
-                //For making bonus reward appear/disappear at a certain amount of time
-                drawBonusReward(G2D);
         
-                // Draws the enemies
-                drawEnemies(G2D);
-        
-                // Draws the player
-                player.draw(G2D, this);
-        
-                // Draws and resets the score
+                // Resets the score
                 score.currentScore = 0;
-                score.draw(G2D);
 
-                // Draws and resets the timer
+                // Resets the timer
                 timeLabel.resetClock();
-                timeLabel.draw(G2D);
         
                 GameState.gameState = GameState.PLAYING;
        
