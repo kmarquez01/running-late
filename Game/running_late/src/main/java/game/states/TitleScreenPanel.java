@@ -20,14 +20,6 @@ public class TitleScreenPanel{
         return;
     }
 
-    String title = "Running Late";
-
-    String developers = "Kirby, Johann, Adrian, Monica";
-
-    int buttonWidth = 200;
-
-    int spacing = 90;
-
     /**
      * Draws the title screen onto the game screen
      * @param g - graphics

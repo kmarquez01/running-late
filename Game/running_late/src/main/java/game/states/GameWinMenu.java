@@ -1,7 +1,7 @@
 package game.states;
 
 import game.GameScreen;
-import game.stats.Score;
+
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -21,13 +21,6 @@ public class GameWinMenu {
         return;
     }
 
-    String title = "Running Late";
-
-    String developers = "Kirby, Johann, Adrian, Monica";
-
-    int buttonWidth = 200;
-
-    int spacing = 90;
 
     /**
      * Draws the victory screen onto the game screen
@@ -58,7 +51,7 @@ public class GameWinMenu {
         try {
             img = ImageIO.read(new FileInputStream("resources/win.png"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }

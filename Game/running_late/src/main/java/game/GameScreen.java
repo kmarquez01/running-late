@@ -13,13 +13,10 @@ import game.utils.KeyHandler;
 import game.utils.MouseInput;
 import game.sound.Sound;
 import game.states.*;
-import game.objects.Exit;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
+
+
 
 /**
  * Responsible for creating the game screen and game loop
