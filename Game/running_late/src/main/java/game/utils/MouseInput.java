@@ -11,17 +11,9 @@ import game.sound.Sound;
  * Responsible for handling all mouse inputs and events
  */
 public class MouseInput implements MouseListener{
-
     Sound effects; // = new Sound(); // for playing sound effects when buttons pressed
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        effects = new Sound();
-    }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-
+    private void mouseChecker(boolean check, MouseEvent e){
         int mousex = e.getX();
         int mousey = e.getY();
 
@@ -75,7 +67,7 @@ public class MouseInput implements MouseListener{
         
     }
 
-    if(GameState.gameState == GameState.GAMEWIN){  //|| GameState.gameState == GameState.GAMEOVER){
+    if(GameState.gameState == GameState.GAMEWIN){  
 
         if(mousex >= 1100 && mousex <= 1275)
         {
@@ -96,7 +88,7 @@ public class MouseInput implements MouseListener{
         }
     }
 
-        if(GameState.gameState == GameState.GAMEOVER){  //|| GameState.gameState == GameState.GAMEOVER){
+        if(GameState.gameState == GameState.GAMEOVER){  
 
             if(mousex >= 1100 && mousex <= 1275)
             {
@@ -115,36 +107,40 @@ public class MouseInput implements MouseListener{
                     GameState.gameState = GameState.RESTART;
                 }
             }
-        }
+
+         }
+    }
 
 
+   
+    @Override
+    public void mouseClicked(MouseEvent e) {
 
-
-        /*
-        public Rectangle playB = new Rectangle(600, 375, 200, 30);
-        public Rectangle exitB = new Rectangle(660, 500, 75, 30);
-        g.drawString("START GAME", 600, 400); 
-        g.drawString("EXIT", 665, 525);
-        // TODO Auto-generated method stub
-        */
-        
+        effects = new Sound();
     }
 
     @Override
+    public void mousePressed(MouseEvent e) {
+            mouseChecker(true, e);
+
+        }
+  
+
+    @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
+        mouseChecker(false, e);
         
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
+        mouseChecker(true, e);
         
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
+        mouseChecker(false, e);
         
     }
     
