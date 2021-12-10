@@ -98,7 +98,8 @@ public class Enemy extends Character {
 
                 // check tile for collision
                 collisionOn = false;
-                screen.collisionHandler.checkTile(this);
+//                screen.collisionHandler.checkTile(this);
+                this.checkTile(screen);
 
                 // have to do where if collison, change either 90 or 180 degree
                 if (collisionOn) {

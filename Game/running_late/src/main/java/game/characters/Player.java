@@ -132,7 +132,8 @@ public class Player extends Character {
 
                 // check tile for collision
                 collisionOn = false;
-                screen.collisionHandler.checkTile(this);
+//                screen.collisionHandler.checkTile(this);
+                this.checkTile(screen);
 
                 // check for enemy collision
                 screen.collisionHandler.checkEnemy(this);
@@ -215,7 +216,8 @@ public class Player extends Character {
 
                 // check tile for collision
                 collisionOn = false;
-                screen.collisionHandler.checkTile(this);
+//                screen.collisionHandler.checkTile(this);
+            this.checkTile(screen);
 
                 // check for enemy collision
                 screen.collisionHandler.checkEnemy(this);
