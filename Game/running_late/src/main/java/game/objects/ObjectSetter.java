@@ -48,16 +48,19 @@ public class ObjectSetter {
         gs.obj[18] = new Exit();
     }
 
+    // Reward creator, makes new Rew and sets location
     public void makeNewReward(int index, int x, int y){
         gs.obj[index] = new Reward();
         setObjLocation(index, x, y);
     }
 
+    // Punishment creator, makes new Pun and sets location
     public void makeNewPunishment(int index, int x, int y){
         gs.obj[index] = new Punishment();
         setObjLocation(index, x, y);
     }
 
+    // Sets all object locations
     public void setObjLocation(int index, int x, int y){
 
         gs.obj[index].worldX = x * gs.tileSize;
@@ -67,8 +70,10 @@ public class ObjectSetter {
     /**
      * Creates all the bonus rewards
      */
+    // method for game screen to call in order to make bonus rewards spawn at random locations
     public void setBonusReward(){makeNewBonusReward(19);}
 
+    // Bonus Reward creator, makes new BR Obj and sets its location
     public void makeNewBonusReward(int index){
         gs.obj[index] = new BonusReward();
         int x = (int)Math.floor(Math.random()*(28)+1); // gets random x coord for BR
@@ -76,6 +81,7 @@ public class ObjectSetter {
         setObjLocation(index, x, y);
     }
 
+    // Returns a random y coord for bonus reward based on the x coord parameter
     public int getBonusRewardYCoord(int x){
 
         int y = (int)Math.floor(Math.random()*(18)+1);
@@ -85,27 +91,20 @@ public class ObjectSetter {
         int isWallTile; // checks if tile is a wall
         boolean isObjectTile = false; //checks if tile already contains an object
 
-        while(tileAvailable == false){ //loops until chosen tile is plausible
-            isWallTile = gs.tileManager.MapTileNum[x][y];
-            if(!gs.tileManager.tile[isWallTile].collision){
-                for(int i=0; i<gs.obj.length-1; i++){
-                    // checks if object is already on tile
+        while(!tileAvailable){ //loops until chosen tile is plausible
+            isWallTile = gs.tileManager.MapTileNum[x][y];   // grabs wall tile for check up
+            if(!gs.tileManager.tile[isWallTile].collision){ // check of tile is wall or not
+                for(int i=0; i<gs.obj.length-1; i++){ // checks every object, makes sure none are already on tile
                     if(gs.obj[i] != null){
                         if( (gs.obj[i].worldX == x * gs.tileSize) && (gs.obj[i].worldY == y * gs.tileSize) ){
-                            isObjectTile = true;
+                            isObjectTile = true;    // detects if the tile already contains an object
+                            break;
                         }
                     }
                 }
-                if(!isObjectTile){
-                    tileAvailable = true;
-                }
-                else{
-                    y = (int)Math.floor(Math.random()*(18)+1);
-                }
+                if(!isObjectTile){tileAvailable = true;}
             }
-            else{
-                y = (int)Math.floor(Math.random()*(18)+1);
-            }
+            if(!tileAvailable){y = (int)Math.floor(Math.random()*(18)+1);} // grabs another y value
         }
         return y;
     }
