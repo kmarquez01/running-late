@@ -299,63 +299,9 @@ public class Player extends Character {
         }
     }
 
-    /**
-     * Responsible for drawing the player onto the screen
-     * @param G2D - graphics
-     */
-    public void draw(Graphics2D G2D){
-
-        BufferedImage sprite = null;
-
-        if (hurt) {
-            G2D.setXORMode(new Color(200, 0, 0));
-        }
-
-        if (direction == "up") {
-            if(spriteNum == 1) {
-                sprite = up1;
-            } else if (spriteNum == 2) {
-                sprite = up2;
-            } else if (spriteNum == 3) {
-                sprite = up1;
-            } else if (spriteNum == 4) {
-                sprite = up3;
-            }
-        } else if (direction == "down"){
-            if(spriteNum == 1) {
-                sprite = down1;
-            } else if(spriteNum == 2) {
-                sprite = down2;
-            } else if(spriteNum == 3) {
-                sprite = down1;
-            } else if(spriteNum == 4) {
-                sprite = down3;
-            }
-        } else if (direction == "left"){
-            if (spriteNum == 1) {
-                sprite = left1;
-            } else if (spriteNum == 2) {
-                sprite = left2;
-            } else if (spriteNum == 3) {
-                sprite = left1;
-            } else if (spriteNum == 4) {
-                sprite = left2;
-            }
-        } else if (direction == "right") {
-            if(spriteNum == 1) {
-                sprite = right1;
-            } else if (spriteNum == 2) {
-                sprite = right2;
-            } else if (spriteNum == 3) {
-                sprite = right1;
-            } else if (spriteNum == 4) {
-                sprite = right2;
-            }
-        }
-
-        // board sets the size of the player
-        G2D.drawImage(sprite, position.x, position.y, screen.tileSize, screen.tileSize, null);
-
+    //getter for hurt status
+    public boolean isHurt(){
+        return hurt;
     }
 
     public int[] getCoordinates(){
