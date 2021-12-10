@@ -212,7 +212,7 @@ public class GameScreen extends JPanel implements Runnable {
                 drawEnemies(G2D);
 
                 // Draws the player
-                player.draw(G2D);
+                player.draw(G2D, this);
 
                 // Draws the score
                 score.draw(G2D);
@@ -256,7 +256,7 @@ public class GameScreen extends JPanel implements Runnable {
                 drawEnemies(G2D);
         
                 // Draws the player
-                player.draw(G2D);
+                player.draw(G2D, this);
         
                 // Draws and resets the score
                 score.currentScore = 0;
@@ -308,7 +308,7 @@ public class GameScreen extends JPanel implements Runnable {
     public void drawEnemies(Graphics2D G2D){
         for(int i = 0; i < enemy.length; i++){
             if(enemy[i] != null){
-                enemy[i].draw(G2D);
+                enemy[i].draw(G2D, this);
             }
         }
     }
