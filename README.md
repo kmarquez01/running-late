@@ -1,9 +1,23 @@
-"mvn clean install" when first building the project.
+## Running_Late Maven project Instructions
+```
+mvn clean install
+ ```
+ when first building the project.
+```
+"mvn clean compile"
+```
 
-"mvn clean compile" to properly compile the source files
+ To properly compile the source files
 
-"mvn test" to run the tests associated with the game project 
+```
+"mvn test" 
+```
 
-"mvn clean compile assembly:single" to compile all sources into a single executable jar file (the game executable file itself)
+To run the tests associated with the game project 
 
-DISCLAIMER Make sure to run the game program (using standard java running practices) in the same directory containing the "pom.xml
+```
+"mvn clean compile assembly:single" 
+```
+To compile all sources into a single executable jar file (the game executable file itself)
+
+DISCLAIMER Make sure to build, run and test the game program (using standard java running practices) in the same directory containing the "pom.xml" file
