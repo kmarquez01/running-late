@@ -1,4 +1,7 @@
 ## Running_Late Maven project Instructions
+
+In your platform terminal, powershell, or IDE terminal input the following commands:
+
 ```
 mvn clean install
  ```
