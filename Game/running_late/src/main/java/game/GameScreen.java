@@ -306,7 +306,7 @@ public class GameScreen extends JPanel implements Runnable {
     public void drawBonusReward(Graphics2D G2D){
 
         if(counter > 60){
-            if(isBonusSet == false){
+            if(!isBonusSet){
                 aSetter.setBonusReward();
                 isBonusSet = true;
             }
@@ -315,7 +315,7 @@ public class GameScreen extends JPanel implements Runnable {
             }
             counter --;
         }
-        else if(counter <= 60 && counter > 0){
+        else if(counter > 0){
             obj[19] = null;
             counter --;
         }
