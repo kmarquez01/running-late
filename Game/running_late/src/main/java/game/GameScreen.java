@@ -185,39 +185,11 @@ public class GameScreen extends JPanel implements Runnable {
 
         switch (GameState.gameState){
             case MENU:
-
-                score.currentScore = 0;
-                player.resetStats();
-                soundPlayer(0,0);
-                titleScreenPanel.draw(G2D);
+                menuCase(G2D);
                 break;
 
             case PLAYING:
-
-                soundPlayer(1,0);
-                // Draws the tiles
-                tileManager.draw(G2D);
-                timeLabel.startTimer();
-
-                // Draws the objects and exit (except Bonus Rewards)
-                drawObjects(G2D);
-
-                //For making bonus reward appear/disappear at a certain amount of time
-                drawBonusReward(G2D);
-
-                // Draws the enemies
-                drawEnemies(G2D);
-
-                // Draws the player
-                player.draw(G2D, this);
-
-                // Draws the score
-                score.draw(G2D);
-
-                // Draws the timer
-                timeLabel.draw(G2D);
-        
-                G2D.dispose();
+                playingCase(G2D);
                 break;
             
             case EXIT:
@@ -225,57 +197,92 @@ public class GameScreen extends JPanel implements Runnable {
                 break;
 
             case PAUSED:
-                player.resetInputs();
-                soundPlayer(4,1);
-                gamePauseMenu.draw(G2D);
-                score.draw(G2D);
-                timeLabel.stopTimer();
-                timeLabel.draw(G2D);
-                
+                pausedCase(G2D);
                 break;
 
             case RESTART:
-
-                player.resetInputs();
-                player.resetStats();
-                player.position = new Point(100,100);
-
-                setupGame();
-        
-                // Resets the score
-                score.currentScore = 0;
-
-                // Resets the timer
-                timeLabel.resetClock();
-        
-                GameState.gameState = GameState.PLAYING;
-       
+                restartCase();
                 break;
 
             case GAMEOVER:
-                soundPlayer(7,1);
-                gameOverMenu.draw(G2D);
-                player.position = new Point(100,100);
-                setupGame();
-                score.draw(G2D);
-                timeLabel.stopTimer();
-                timeLabel.draw(G2D);
-
-                G2D.dispose();
-
-                
+                gameOverCase(G2D);
                 break;
 
             case GAMEWIN:
-                soundPlayer(8,1);
-                gameWinMenu.draw(G2D);
-                score.draw(G2D);
-                timeLabel.stopTimer();
-                timeLabel.draw(G2D);
+                gameWinCase(G2D);
                 break;
         }
 
     }
+
+    private void gameOverCase(Graphics2D G2D) {
+        soundPlayer(7,1);
+        gameOverMenu.draw(G2D);
+        player.position = new Point(100,100);
+        setupGame();
+        score.draw(G2D);
+        timeLabel.stopTimer();
+        timeLabel.draw(G2D);
+        G2D.dispose();
+    }
+
+    private void gameWinCase(Graphics2D G2D) {
+        soundPlayer(8,1);
+        gameWinMenu.draw(G2D);
+        score.draw(G2D);
+        timeLabel.stopTimer();
+        timeLabel.draw(G2D);
+    }
+
+    private void restartCase() {
+        player.resetInputs();
+        player.resetStats();
+        player.position = new Point(100,100);
+        setupGame();
+        // Resets the score
+        score.currentScore = 0;
+        // Resets the timer
+        timeLabel.resetClock();
+        GameState.gameState = GameState.PLAYING;
+    }
+
+    private void pausedCase(Graphics2D G2D) {
+        player.resetInputs();
+        soundPlayer(4,1);
+        gamePauseMenu.draw(G2D);
+        score.draw(G2D);
+        timeLabel.stopTimer();
+        timeLabel.draw(G2D);
+    }
+
+    private void playingCase(Graphics2D G2D) {
+        soundPlayer(1,0);
+        // Draws the tiles
+        tileManager.draw(G2D);
+        timeLabel.startTimer();
+        // Draws the objects and exit (except Bonus Rewards)
+        drawObjects(G2D);
+        //For making bonus reward appear/disappear at a certain amount of time
+        drawBonusReward(G2D);
+        // Draws the enemies
+        drawEnemies(G2D);
+        // Draws the player
+        player.draw(G2D, this);
+        // Draws the score
+        score.draw(G2D);
+        // Draws the timer
+        timeLabel.draw(G2D);
+        G2D.dispose();
+    }
+
+    private void menuCase(Graphics2D G2D) {
+        score.currentScore = 0;
+        player.resetStats();
+        soundPlayer(0,0);
+        titleScreenPanel.draw(G2D);
+    }
+
+
 
     // For drawing all objects in array
     public void drawObjects(Graphics2D G2D){
