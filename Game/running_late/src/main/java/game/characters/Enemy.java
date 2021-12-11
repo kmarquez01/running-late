@@ -61,16 +61,16 @@ public class Enemy extends Character {
      */
     public void setEnemyImage(){
         try {
-            up1 = ImageIO.read( (new FileInputStream("resources/enemy/MovEn_idleup.png") ) );
-            up2 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_up1.png")));
-            up3 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_up2.png")));
-            down1 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_idledown.png")));
-            down2 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_down1.png")));
-            down3 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_down2.png")));
-            left1 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_idleleft.png")));
-            left2 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_left1.png")));
-            right1 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_idleright.png")));
-            right2 = ImageIO.read( (new FileInputStream ("resources/enemy/MovEn_right1.png")));
+            up1 = ImageIO.read(getClass().getResource("/enemy/MovEn_idleup.png"));
+            up2 = ImageIO.read(getClass().getResource("/enemy/MovEn_up1.png"));
+            up3 = ImageIO.read(getClass().getResource("/enemy/MovEn_up2.png"));
+            down1 = ImageIO.read(getClass().getResource("/enemy/MovEn_idledown.png"));
+            down2 = ImageIO.read(getClass().getResource("/enemy/MovEn_down1.png"));
+            down3 = ImageIO.read(getClass().getResource("/enemy/MovEn_down2.png"));
+            left1 = ImageIO.read(getClass().getResource("/enemy/MovEn_idleleft.png"));
+            left2 = ImageIO.read(getClass().getResource("/enemy/MovEn_left1.png"));
+            right1 = ImageIO.read(getClass().getResource("/enemy/MovEn_idleright.png"));
+            right2 = ImageIO.read(getClass().getResource("/enemy/MovEn_right1.png"));
         }
         catch (IOException e){
             e.printStackTrace();

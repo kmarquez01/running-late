@@ -49,8 +49,8 @@ public class GamePauseMenu{
     public void getImage(){
 
         try {
-            img = ImageIO.read(new FileInputStream("resources/paused.png"));
-            img1 = ImageIO.read(new FileInputStream("resources/backbutton.png"));
+            img = ImageIO.read(getClass().getResource("/paused.png"));
+            img1 = ImageIO.read(getClass().getResource("/backbutton.png"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

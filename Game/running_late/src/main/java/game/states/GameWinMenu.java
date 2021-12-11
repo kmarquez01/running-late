@@ -49,7 +49,7 @@ public class GameWinMenu {
     public void getImage(){
 
         try {
-            img = ImageIO.read(new FileInputStream("resources/win.png"));
+            img = ImageIO.read(getClass().getResource("/win.png"));
         } catch (IOException e) {
 
             e.printStackTrace();

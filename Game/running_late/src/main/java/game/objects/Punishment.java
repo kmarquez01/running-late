@@ -14,7 +14,7 @@ public class Punishment extends Object {
         name = "Spike";
         hurtful = true;
         try {
-            image = ImageIO.read( (new FileInputStream("resources/punishments/StatEn_idle.png") ) );
+            image = ImageIO.read(getClass().getResource("/punishments/StatEn_idle.png"));
         }
         catch(IOException e){
             e.printStackTrace();

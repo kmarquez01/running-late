@@ -13,7 +13,7 @@ public class Reward extends Object {
 
         name = "Coin";
         try {
-            image = ImageIO.read( (new FileInputStream("resources/rewards/assignment_paper.png") ) );
+            image = ImageIO.read(getClass().getResource("/rewards/assignment_paper.png"));
         }
         catch(IOException e){
             e.printStackTrace();

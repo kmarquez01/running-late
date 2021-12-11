@@ -45,7 +45,7 @@ public class TitleScreenPanel{
     public void getImage(){
 
         try {
-            img = ImageIO.read(new FileInputStream("resources/title.png"));
+            img = ImageIO.read(getClass().getResource("/title.png"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

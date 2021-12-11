@@ -4,6 +4,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.net.URL;
 
 /**
  * Responsible for all sound in the game
@@ -11,24 +12,23 @@ import java.io.File;
 public class Sound {
 
     public Clip clip;
-    File soundURL[] = new File[9];
+    URL soundURL[] = new URL[9];
 
     /**
-     * Stores all the different sounds and mmsuic
+     * Stores all the different sounds and music
      */
     public Sound(){
+        soundURL[0] = getClass().getResource("/sounds/MainMenu.wav");
+        soundURL[1] = getClass().getResource("/sounds/InGame.wav");
+        soundURL[2] = getClass().getResource("/sounds/Reward.wav");
+        soundURL[3] = getClass().getResource("/sounds/Hurt.wav");
+        soundURL[4] = getClass().getResource("/sounds/PauseGame.wav");
+        soundURL[5] = getClass().getResource("/sounds/UnpauseGame.wav");
+        soundURL[6] = getClass().getResource("/sounds/Loose.wav"); //not in use
+        soundURL[7] = getClass().getResource("/sounds/GameOver.wav");
+        soundURL[8] = getClass().getResource("/sounds/GameWin.wav");
 
-        soundURL[0] = new File("resources/sounds/MainMenu.wav");
-        soundURL[1] = new File("resources/sounds/InGame.wav");
-        soundURL[2] = new File("resources/sounds/Reward.wav");
-        soundURL[3] = new File("resources/sounds/Hurt.wav");
-        soundURL[4] = new File("resources/sounds/PauseGame.wav");
-        soundURL[5] = new File("resources/sounds/UnpauseGame.wav");
-        soundURL[6] = new File("resources/sounds/Loose.wav"); //not in use
-        soundURL[7] = new File("resources/sounds/GameOver.wav");
-        soundURL[8] = new File("resources/sounds/GameWin.wav");
     }
-
     /**
      * Gets the audio files
      * @param index - which audio file to get

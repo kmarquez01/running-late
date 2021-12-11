@@ -48,7 +48,7 @@ public class GameOverMenu {
     public void getImage(){
 
         try {
-            img = ImageIO.read(new FileInputStream("resources/gameover.png"));
+            img = ImageIO.read(getClass().getResource("/gameover.png"));
             
         } catch (IOException e) {
             // TODO Auto-generated catch block

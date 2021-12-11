@@ -66,16 +66,16 @@ public class Player extends Character {
      */
     public void setPlayerImage(){
         try {
-            up1 = ImageIO.read( (new FileInputStream ("resources/player/idleup.png") ) );
-            up2 = ImageIO.read( (new FileInputStream ("resources/player/up1.png")));
-            up3 = ImageIO.read( (new FileInputStream ("resources/player/up2.png")));
-            down1 = ImageIO.read( (new FileInputStream ("resources/player/idledown.png")));
-            down2 = ImageIO.read( (new FileInputStream ("resources/player/down1.png")));
-            down3 = ImageIO.read( (new FileInputStream ("resources/player/down2.png")));
-            left1 = ImageIO.read( (new FileInputStream ("resources/player/idleleft.png")));
-            left2 = ImageIO.read( (new FileInputStream ("resources/player/left1.png")));
-            right1 = ImageIO.read( (new FileInputStream ("resources/player/idleright.png")));
-            right2 = ImageIO.read( (new FileInputStream ("resources/player/right1.png")));
+            up1 = ImageIO.read(getClass().getResource("/player/idleup.png"));
+            up2 = ImageIO.read(getClass().getResource("/player/up1.png"));
+            up3 = ImageIO.read(getClass().getResource("/player/up2.png"));
+            down1 = ImageIO.read(getClass().getResource("/player/idledown.png"));
+            down2 = ImageIO.read(getClass().getResource("/player/down1.png"));
+            down3 = ImageIO.read(getClass().getResource("/player/down2.png"));
+            left1 = ImageIO.read(getClass().getResource("/player/idleleft.png"));
+            left2 = ImageIO.read(getClass().getResource("/player/left1.png"));
+            right1 = ImageIO.read(getClass().getResource("/player/idleright.png"));
+            right2 = ImageIO.read(getClass().getResource("/player/right1.png"));
         }
         catch (IOException e){
             e.printStackTrace();

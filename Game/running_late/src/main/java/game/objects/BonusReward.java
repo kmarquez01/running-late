@@ -13,7 +13,7 @@ public class BonusReward extends Object {
 
         name = "Gold";
         try {
-            image = ImageIO.read( (new FileInputStream("resources/rewards/BonusReward.png") ) );
+            image = ImageIO.read(getClass().getResource("/rewards/BonusReward.png"));
         }
         catch(IOException e){
             e.printStackTrace();

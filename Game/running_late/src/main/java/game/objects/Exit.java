@@ -15,7 +15,7 @@ public class Exit extends Object{
         worldY = 18*48; //18*gs.tileSize
         isExit = true;
         try {
-            image = ImageIO.read( (new FileInputStream("resources/exit2.png") ) );
+            image = ImageIO.read(getClass().getResource("/exit2.png"));
         }
         catch(IOException e){
             e.printStackTrace();
