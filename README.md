@@ -1,3 +1,8 @@
+# Running Late
+
+This game was created for a project in a computing programming class (CMPT 276). Essentially the premise is that a kid forgot his homework on campus. Unfortunately it is past closing hours, so he snuck in and found them scattered throughout the floor. As he was about to leave he noticed that there are security guards patrolling to make sure no one is around! His goal is to collect the papers scattered throughout campus and leave without getting caught.
+
+
 ## Running_Late Maven project Instructions
 
 ###### In your platform terminal, powershell, or IDE terminal input the following commands:
